@@ -28,6 +28,10 @@
 
 :x: immune level system (for buffs/debuffs and difficulty scaling)
 
+:x: allow player to choose classes and names
+
+:x: random names for enemies
+
 
 ## Adventurer Subclasses
 
