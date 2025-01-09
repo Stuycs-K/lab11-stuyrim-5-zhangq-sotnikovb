@@ -3,17 +3,30 @@
 
 ## Features
 
-Make a clear list of features that work/dont work
+### Required
+:x: add debuff system to adventurer
 
-:white_check_mark: This feature works.
+:x: 2 required adventurer subclasses
 
-:question: This feature works partially.
+:x: stat display
 
-:ballot_box_with_check: This extra (beyond the things that the lab was supposed to do) feature works.
+:x: description text
 
-:x: This required feature does not work.
+:x: win/loss condition
 
-:beetle: This is a bug that affects the game.
+:x: gameplay loop
+
+
+### Optional
+:x: 1 extra adventurer subclass
+
+:x: multiple random rounds
+
+:x: boss
+
+:x: items: bonuses, healing, etc.
+
+:x: immune level system (for buffs/debuffs and difficulty scaling)
 
 
 ## Adventurer Subclasses
