@@ -13,19 +13,38 @@ public class Game{
   //Do not write over the blank areas where text will appear or parties will appear.
   public static void drawBackground(){
     Text.color(BORDER_COLOR, BORDER_BACKGROUND);
-    for (int i = 0; i<=x; i++)
+    for (int i = 0; i<=WIDTH; i++)
     {
       Text.go(0,i);
-      System.out.print(".");
-      Text.go(y,i);
-      System.out.print(".");
+      System.out.print("*");
+      Text.go(7,i);
+      System.out.print("*");
+      Text.go(HEIGHT-6,i);
+      System.out.print("*");
+      Text.go(HEIGHT,i);
+      System.out.print("*");
     }
-    for (int i = 0; i<=y; i++)
+    for (int i = 0; i<=HEIGHT; i++)
     {
       Text.go(i,0);
-      System.out.print(".");
-      Text.go(i,x);
-      System.out.print(".");
+      System.out.print("*");
+      Text.go(i,WIDTH);
+      System.out.print("*");
+      if (i<7)
+      {
+        Text.go(i,26);
+        System.out.print("*");
+        Text.go(i,53);
+        System.out.print("*");
+      }
+      if (i>HEIGHT-6)
+      {
+        Text.go(i,26);
+        System.out.print("*");
+        Text.go(i,53);
+        System.out.print("*");
+      }
+      Text.color(BORDER_BACKGROUND, BORDER_COLOR);
     }
   }
 
@@ -33,9 +52,8 @@ public class Game{
   //(columns and rows start at 1 (not zero) in the terminal)
   //use this method in your other text drawing methods to make things simpler.
   public static void drawText(String s,int startRow, int startCol){
-    /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-    //YOUR CODE HERE
-    /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+    Text.go(startRow, startCol);
+    System.out.println(s);s
   }
 
   /*Use this method to place text on the screen at a particular location.
@@ -49,9 +67,22 @@ public class Game{
   *@param height the number of rows
   */
   public static void TextBox(int row, int col, int width, int height, String text){
-    /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-    //YOUR CODE HERE
-    /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+    private ArrayList<String> textBits = new ArrayList<String>(height);
+    while(text.length() > width)
+    {
+      textBits.add(text.substring(0, width))
+      text = text.substring(width);
+    }
+    while(textBits.size() > height)
+      textBits.remove(height+1);
+    while(textBits.get(height).length()<width)
+    {
+      textBits.set(height)
+    }
+    for (String words : textBits)
+    {
+      drawText(words, row, col);
+    }
   }
 
 
