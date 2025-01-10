@@ -44,6 +44,7 @@ public class Game{
         Text.go(i,53);
         System.out.print("*");
       }
+      Text.color(BORDER_BACKGROUND, BORDER_COLOR);
     }
   }
 
@@ -51,9 +52,8 @@ public class Game{
   //(columns and rows start at 1 (not zero) in the terminal)
   //use this method in your other text drawing methods to make things simpler.
   public static void drawText(String s,int startRow, int startCol){
-    /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-    //YOUR CODE HERE
-    /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+    Text.go(startRow, startCol);
+    System.out.println(s);s
   }
 
   /*Use this method to place text on the screen at a particular location.
@@ -67,9 +67,22 @@ public class Game{
   *@param height the number of rows
   */
   public static void TextBox(int row, int col, int width, int height, String text){
-    /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-    //YOUR CODE HERE
-    /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+    private ArrayList<String> textBits = new ArrayList<String>(height);
+    while(text.length() > width)
+    {
+      textBits.add(text.substring(0, width))
+      text = text.substring(width);
+    }
+    while(textBits.size() > height)
+      textBits.remove(height+1);
+    while(textBits.get(height).length()<width)
+    {
+      textBits.set(height)
+    }
+    for (String words : textBits)
+    {
+      drawText(words, row, col);
+    }
   }
 
 
