@@ -1,6 +1,6 @@
 public class HIV extends Adventurer{
-  int viralLoad, viralLoadMax, ImmuneSystem;
-  boolean infected;
+  int viralLoad, viralLoadMax, ImmuneSystem, infected;
+  ArrayList<Adventurer> Ally, Enemy;
 
   /*the other constructors ultimately call the constructor
   *with all parameters.*/
@@ -9,7 +9,7 @@ public class HIV extends Adventurer{
     viralLoadMax = 12;
     viralLoad = viralLoadMax/2;
     ImmuneSystem = 1;
-    infected = false;
+    infected = 0;
   }
 
   public HIV(String name){
@@ -24,6 +24,15 @@ public class HIV extends Adventurer{
   public String getSpecialName(){
     return "viralLoad";
   }
+  
+  public int setInfected(int infected){
+    this.infected = infected;
+  }
+  
+  public int getInfected(){
+    return this.infected;
+  }
+  
 
   public int getSpecial(){
     return viralLoad;
@@ -53,8 +62,7 @@ public class HIV extends Adventurer{
   public String specialAttack(Adventurer other){
     if(getSpecial() >= 6){
       setSpecial(getSpecial()-6);
-      int damage = (int)(Math.random()*5+Math.random()*5)+3;
-      other.applyDamage(damage);
+      other.setInfected (5);
       return this + " used their "+
       " skills to hack the matrix. "+
       " This glitched out "+other+" dealing "+ damage +" points of damage.";
@@ -63,7 +71,7 @@ public class HIV extends Adventurer{
     }
 
   }
-  /*Increase ally damage by 1.2x*/
+  /*Increase ally damage to 1.2x */
   public String support(Adventurer other){
     // call function to add damage
     return "transfer interstitial fluid to "+other+" and increases ally damage by 1.2x";
@@ -77,5 +85,22 @@ public class HIV extends Adventurer{
     + getSpecialName()+ " and "+hp+" HP";
   }
   
+  //Decrease enemy damage to 0.8x and deal 1 damage
+  public String spAttackEffect (Adventurer other){
+    
+  }
   
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
