@@ -13,19 +13,37 @@ public class Game{
   //Do not write over the blank areas where text will appear or parties will appear.
   public static void drawBackground(){
     Text.color(BORDER_COLOR, BORDER_BACKGROUND);
-    for (int i = 0; i<=x; i++)
+    for (int i = 0; i<=WIDTH; i++)
     {
       Text.go(0,i);
-      System.out.print(".");
-      Text.go(y,i);
-      System.out.print(".");
+      System.out.print("*");
+      Text.go(7,i);
+      System.out.print("*");
+      Text.go(HEIGHT-6,i);
+      System.out.print("*");
+      Text.go(HEIGHT,i);
+      System.out.print("*");
     }
-    for (int i = 0; i<=y; i++)
+    for (int i = 0; i<=HEIGHT; i++)
     {
       Text.go(i,0);
-      System.out.print(".");
-      Text.go(i,x);
-      System.out.print(".");
+      System.out.print("*");
+      Text.go(i,WIDTH);
+      System.out.print("*");
+      if (i<7)
+      {
+        Text.go(i,26);
+        System.out.print("*");
+        Text.go(i,53);
+        System.out.print("*");
+      }
+      if (i>HEIGHT-6)
+      {
+        Text.go(i,26);
+        System.out.print("*");
+        Text.go(i,53);
+        System.out.print("*");
+      }
     }
   }
 

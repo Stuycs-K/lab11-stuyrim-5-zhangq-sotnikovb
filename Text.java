@@ -55,6 +55,22 @@ public class Text{
     return ("\u001b[" + c1 + ";" + c2 + ";" + c3 + "m"+text+"\u001b[0m");
   }
 
+  public static void color(int m)
+  {
+    System.out.print ("\033[;" + m + "m");
+  }
+  public static void color(int m1, int m2)
+  {
+    System.out.print ("\033["+ m1 + ";" + m2 + "m");
+  }
+  public static void color(int m1, int m2, int m3)
+  {
+    System.out.print ("\033["+ m1 + ";" + m2 + ";" + m3 + "m");
+  }
+  public static void color(int m1, int m2, int m3, int m4)
+  {
+    System.out.print ("\033["+ m1 + ";" + m2 + ";" + m3 + ";"+m4+"m");
+  }
 
   //Tested and working in:
   //git-bash (windows 10),    wsl (windows 10+11),   powershell windows 11
