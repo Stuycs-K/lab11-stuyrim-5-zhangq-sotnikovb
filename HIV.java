@@ -1,63 +1,61 @@
 public class HIV extends Adventurer{
-  int viralLoad, viralLoadMax;
-  String preferredLanguage;
+  int viralLoad, viralLoadMax, ImmuneSystem;
+  boolean infected;
 
   /*the other constructors ultimately call the constructor
   *with all parameters.*/
-  public CodeWarrior(String name, int hp, String language){
+  public HIV(String name, int hp){
     super(name,hp);
-    caffeineMax = 12;
-    caffeine = caffeineMax/2;
-    preferredLanguage = language;
+    viralLoadMax = 12;
+    viralLoad = viralLoadMax/2;
+    ImmuneSystem = 1;
+    infected = false;
   }
 
-  public CodeWarrior(String name, int hp){
-    this(name,hp,"c++");
+  public HIV(String name){
+    this(name,30);
   }
 
-  public CodeWarrior(String name){
-    this(name,24);
-  }
-
-  public CodeWarrior(){
-    this("Carmack");
+  public HIV(){
+    this("HarryIvanVance");
   }
 
   /*The next 8 methods are all required because they are abstract:*/
   public String getSpecialName(){
-    return "caffeine";
+    return "viralLoad";
   }
 
   public int getSpecial(){
-    return caffeine;
+    return viralLoad;
   }
 
   public void setSpecial(int n){
-    caffeine = n;
+    viralLoad = n;
   }
 
   public int getSpecialMax(){
-    return caffeineMax;
+    return viralLoadMax;
   }
 
-  /*Deal 2-7 damage to opponent, restores 2 caffeine*/
+  /*Deal 1-3 damage to opponent, restores 2 viralLoad*/
   public String attack(Adventurer other){
-    int damage = (int)(Math.random()*6)+2;
+    int damage = (int)(Math.random()*3)+1;
     other.applyDamage(damage);
     restoreSpecial(2);
     return this + " attacked "+ other + " and dealt "+ damage +
-    " points of damage. They then take a sip of their coffee.";
+    " points of damage. They then regained 2 chunks of viralLoad.";
   }
 
-  /*Deal 3-12 damage to opponent, only if caffeine is high enough.
-  *Reduces caffeine by 8.
+  /*Choose an enemy, and after 3 turns deal 1 points of damage for 1 turn and get a damage debuff for 5 turns to it. 
+  *If the enemy support another enemy in those 3 turns, it can infect the other enemy.  
+  *Reduces viralLoad by 6.
   */
   public String specialAttack(Adventurer other){
-    if(getSpecial() >= 8){
-      setSpecial(getSpecial()-8);
+    if(getSpecial() >= 6){
+      setSpecial(getSpecial()-6);
       int damage = (int)(Math.random()*5+Math.random()*5)+3;
       other.applyDamage(damage);
-      return this + " used their "+preferredLanguage+
+      return this + " used their "+
       " skills to hack the matrix. "+
       " This glitched out "+other+" dealing "+ damage +" points of damage.";
     }else{
@@ -65,16 +63,19 @@ public class HIV extends Adventurer{
     }
 
   }
-  /*Restores 5 special to other*/
+  /*Increase ally damage by 1.2x*/
   public String support(Adventurer other){
-    return "Gives a coffee to "+other+" and restores "
-    + other.restoreSpecial(5)+" "+other.getSpecialName();
+    // call function to add damage
+    return "transfer interstitial fluid to "+other+" and increases ally damage by 1.2x";
   }
-  /*Restores 6 special and 1 hp to self.*/
+  
+  /*Restores 2 special and 4 hp to self.*/
   public String support(){
-    int hp = 1;
+    int hp = 4;
     setHP(getHP()+hp);
-    return this+" drinks a coffee to restores "+restoreSpecial(6)+" "
+    return this+" gained interstitial fliud and restores "+restoreSpecial(2)+" "
     + getSpecialName()+ " and "+hp+" HP";
   }
+  
+  
 }
