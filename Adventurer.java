@@ -99,6 +99,8 @@ public abstract class Adventurer{
     this.maxHP = hp;
     this.immuneSystem = 1;
     this.infected = 0;
+    this.turn = 1;
+    
   }
 
   //toString method
@@ -124,7 +126,12 @@ public abstract class Adventurer{
 
   //Set Methods
   public void setHP(int health){
-    this.HP = health;
+    if (this.getHP <= 0){
+      this.HP = 0;
+    }
+    else{
+      this.HP = health;
+    }
   }
 
   public void setName(String s){

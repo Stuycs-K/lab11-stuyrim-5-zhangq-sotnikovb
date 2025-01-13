@@ -59,31 +59,25 @@ public class COVID extends Adventurer{
   public String specialAttack(Adventurer other){
     if(getSpecial() >= 10){
       setSpecial(getSpecial()-10);
+      other.setHP(other.getHP()-12);
       return this.getName() +" struck toward "+other.getName()+", dealing 12 points of damage";
     }else{
       return "Failed to use special attack. Instead "+attack(other);
     }
 
   }
-  /*Increase ally damage by 20% of the original */
+  /*restore ally 4sp to an ally*/
   public String support(Adventurer other){
-    other.setImmuneSystem(other.getImmuneSystem()+0.2);
-    return "transfer interstitial fluid to "+other+" and increases ally damage by 1.2x";
+    other.setSpecial(other.getSpecial()+4);
+    return "transfer interstitial fluid to "+other+" and restored 4 chunks of viral load";
   }
   
-  /*Restores 2 special and 4 hp to self.*/
+  /*Restores 3 hp to self.*/
   public String support(){
-    int hp = 4;
+    int hp = 3;
     setHP(getHP()+hp);
-    return this+" gained interstitial fliud and restores "+restoreSpecial(2)+" "
-    + getSpecialName()+ " and "+hp+" HP";
+    return this+" gained interstitial fliud and restores 3 chunks of viral load";
   }
-  
-  //Decrease enemy damage by 20% of max and deal 1 damage
-  public void spAttackEffect (Adventurer other){
-    other.setImmuneSystem(other.getImmuneSystem-0.2);
-    }
-  
 }
 
 
