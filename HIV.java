@@ -1,5 +1,5 @@
 public class HIV extends Adventurer{
-  int viralLoad, viralLoadMax, ImmuneSystem, infected;
+  int viralLoad, viralLoadMax;
   ArrayList<Adventurer> Ally, Enemy;
 
   /*the other constructors ultimately call the constructor
@@ -35,14 +35,6 @@ public class HIV extends Adventurer{
 
   public int getSpecialMax(){
     return this.viralLoadMax;
-  }
-  
-  public int getImmuneSystem(){
-    return this.ImmuneSystem
-  }
-  
-  public void setImmuneSystem(int n){
-    this.ImmuneSystem = n;
   }
 
   /*Deal 1-3 damage to opponent, restores 2 viralLoad*/
