@@ -55,27 +55,27 @@ public abstract class Adventurer{
   public void applyDamage(int amount){
     this.HP -= amount;
   }
-  
-  public int setInfected(int infected){
+
+  public void setInfected(int infected){
     this.infected = infected;
   }
-  
+
   public int getInfected(){
     return this.infected;
   }
-  
+
   public int getImmuneSystem(){
-    return this.immuneSystem
+    return this.immuneSystem;
   }
-  
+
   public void setImmuneSystem(int n){
     this.immuneSystem = n;
   }
-  
+
   public int getTurn(){
     return this.turn;
   }
-  
+
   public void setTurn(int n){
     if (n < 0){
       this.turn = 0;
@@ -100,7 +100,7 @@ public abstract class Adventurer{
     this.immuneSystem = 1;
     this.infected = 0;
     this.turn = 1;
-    
+
   }
 
   //toString method
@@ -126,7 +126,7 @@ public abstract class Adventurer{
 
   //Set Methods
   public void setHP(int health){
-    if (this.getHP <= 0){
+    if (this.getHP() <= 0){
       this.HP = 0;
     }
     else{
