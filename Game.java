@@ -4,7 +4,6 @@ public class Game{
   private static final int HEIGHT = 30;
   private static final int BORDER_COLOR = Text.BLACK;
   private static final int BORDER_BACKGROUND = Text.WHITE + Text.BACKGROUND;
-  private static ArrayList
 
   public static void main(String[] args) {
     run();
@@ -108,7 +107,8 @@ public class Game{
     public static void drawParty(ArrayList<Adventurer> party,int startRow){
       for (int i = 0; i<party.size(); i++)
       {
-        TextBox(startRow, 2, 2, (i+1)*((WIDTH-4)/3), party.get(1));
+        TextBox(startRow, i*((WIDTH-4)/3+i-1)+2, (WIDTH-4)/3-1, 2, party.get(i)+"");
+        drawText("HP: "+colorByPercent(party.get(i).getHP(), party.get(i).getmaxHP()), startRow+2, i*((WIDTH-4)/3+i-1)+2);
       }
     }
 
@@ -116,9 +116,9 @@ public class Game{
   //Use this to create a colorized number string based on the % compared to the max value.
   public static String colorByPercent(int hp, int maxHP){
     String output = String.format("%2s", hp+"")+"/"+String.format("%2s", maxHP+"");
-    if (float(hp)/maxHP< 0.25)
+    if ((float)hp/maxHP< 0.25)
       output = Text.colorize(output, Text.RED);
-    else if (float(hp)/maxHP< 0.75)
+    else if ((float)hp/maxHP< 0.75)
       output = Text.colorize(output, Text.YELLOW);
     else
       output = Text.colorize(output, Text.WHITE);
