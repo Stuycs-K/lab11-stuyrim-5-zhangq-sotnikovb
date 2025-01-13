@@ -55,7 +55,15 @@ public abstract class Adventurer{
   public void applyDamage(int amount){
     this.HP -= amount;
   }
-
+  
+    public int setInfected(int infected){
+    this.infected = infected;
+  }
+  
+  public int getInfected(){
+    return this.infected;
+  }
+  
   //You did it wrong if this happens.
   public Adventurer(){
     this("Lester-the-noArg-constructor-string");
