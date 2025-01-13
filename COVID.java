@@ -50,22 +50,18 @@ public class COVID extends Adventurer{
     other.applyDamage(damage);
     restoreSpecial(2);
     return this + " attacked "+ other + " and dealt "+ damage +
-    " points of damage. They then regained 2 chunks of viralLoad.";
+    " points of damage. They then regained 2 chunks of viralLoad";
   }
 
-  /*Choose an enemy, and after 3 turns deal 1 points of damage for 1 turn and get a damage debuff for 5 turns to it. 
-  *If the enemy support another enemy in those 3 turns, it can infect the other enemy.  
-  *Reduces viralLoad by 6.
+  /*Choose an enemy, and deal 12 points of damage. 
+  *Reduces viralLoad by 10.
   */
   public String specialAttack(Adventurer other){
-    if(getSpecial() >= 6){
-      setSpecial(getSpecial()-6);
-      other.setInfected (5);
-      return this + " used their "+
-      " skills to hack the matrix. "+
-      " This glitched out "+other+" dealing "+ damage +" points of damage.";
+    if(getSpecial() >= 10){
+      setSpecial(getSpecial()-10);
+      return this.getName() +" struck toward "+other.getName()+", dealing 12 points of damage";
     }else{
-      return "Not enough caffeine to use the ultimate code. Instead "+attack(other);
+      return "Failed to use special attack. Instead "+attack(other);
     }
 
   }
