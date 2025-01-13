@@ -61,11 +61,9 @@ public class HIV extends Adventurer{
     if(getSpecial() >= 6){
       setSpecial(getSpecial()-6);
       other.setInfected (5);
-      return this + " used their "+
-      " skills to hack the matrix. "+
-      " This glitched out "+other+" dealing "+ damage +" points of damage.";
+      return this.getName() +" puked out virus to "+other.getName()+", but nothing seems to happen now...";
     }else{
-      return "Not enough caffeine to use the ultimate code. Instead "+attack(other);
+      return "Failed to use special attack. Instead "+attack(other);
     }
 
   }
