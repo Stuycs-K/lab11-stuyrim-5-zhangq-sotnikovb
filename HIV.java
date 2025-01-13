@@ -51,7 +51,7 @@ public class HIV extends Adventurer{
   }
   
   public void setImmuneSystem(int n){
-    this.ImmuneSystem += n;
+    this.ImmuneSystem = n;
   }
 
   /*Deal 1-3 damage to opponent, restores 2 viralLoad*/
@@ -79,9 +79,9 @@ public class HIV extends Adventurer{
     }
 
   }
-  /*Increase ally damage to 1.2x */
+  /*Increase ally damage by 20% of the original */
   public String support(Adventurer other){
-    // call function to add damage
+    other.setImmuneSystem(other.getImmuneSystem()+0.2);
     return "transfer interstitial fluid to "+other+" and increases ally damage by 1.2x";
   }
   
