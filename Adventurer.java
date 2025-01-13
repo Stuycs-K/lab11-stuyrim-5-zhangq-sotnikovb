@@ -65,11 +65,11 @@ public abstract class Adventurer{
   }
   
   public int getImmuneSystem(){
-    return this.ImmuneSystem
+    return this.immuneSystem
   }
   
   public void setImmuneSystem(int n){
-    this.ImmuneSystem = n;
+    this.immuneSystem = n;
   }
   
   //You did it wrong if this happens.
@@ -85,6 +85,8 @@ public abstract class Adventurer{
     this.name = name;
     this.HP = hp;
     this.maxHP = hp;
+    this.immuneSystem = 1;
+    this.infected = 0;
   }
 
   //toString method
