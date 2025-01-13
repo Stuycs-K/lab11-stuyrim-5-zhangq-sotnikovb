@@ -56,12 +56,20 @@ public abstract class Adventurer{
     this.HP -= amount;
   }
   
-    public int setInfected(int infected){
+  public int setInfected(int infected){
     this.infected = infected;
   }
   
   public int getInfected(){
     return this.infected;
+  }
+  
+  public int getImmuneSystem(){
+    return this.ImmuneSystem
+  }
+  
+  public void setImmuneSystem(int n){
+    this.ImmuneSystem = n;
   }
   
   //You did it wrong if this happens.
