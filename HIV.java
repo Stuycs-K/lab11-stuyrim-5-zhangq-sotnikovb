@@ -93,10 +93,10 @@ public class HIV extends Adventurer{
     + getSpecialName()+ " and "+hp+" HP";
   }
   
-  //Decrease enemy damage to 0.8x and deal 1 damage
-  public String spAttackEffect (Adventurer other){
-    
-  }
+  //Decrease enemy damage by 20% of max and deal 1 damage
+  public void spAttackEffect (Adventurer other){
+    other.setImmuneSystem(other.getImmuneSystem-0.2);
+    }
   
 }
 
