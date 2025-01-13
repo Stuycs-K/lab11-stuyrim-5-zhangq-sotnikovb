@@ -28,11 +28,19 @@ public class HIV extends Adventurer{
   }
 
   public void setSpecial(int n){
+    if (n > this.getSpecialMax()){
+      this.viralLoad = this.getSpecialMax()
+    }
     this.viralLoad = n;
   }
 
   public int getSpecialMax(){
     return this.viralLoadMax;
+  }
+  
+  public String restoreSpecial(int n){
+    this.setSpecial(this.getSpecial() + 2);
+    return ("Restored self viralLoad by 2sp. Now viralLoad: "+ this.getSpecial() + "/" + this.getSpecialMax());
   }
 
   /*Deal 1-3 damage to opponent, restores 2 viralLoad*/

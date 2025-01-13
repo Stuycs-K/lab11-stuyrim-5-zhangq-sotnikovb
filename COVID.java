@@ -11,7 +11,7 @@ public class COVID extends Adventurer{
   }
 
   public COVID(String name){
-    this(name,30);
+    this(name,18);
   }
 
   public COVID(){
@@ -26,8 +26,16 @@ public class COVID extends Adventurer{
   public int getSpecial(){
     return viralLoad;
   }
+  
+ public String restoreSpecial(int n){
+    this.setSpecial(this.getSpecial() + 2);
+    return ("Restored self viralLoad by 2sp. Now viralLoad: "+ this.getSpecial() + "/" + this.getSpecialMax());
+  }
 
   public void setSpecial(int n){
+    if (n > this.getSpecialMax()){
+      this.viralLoad = this.getSpecialMax()
+    }
     this.viralLoad = n;
   }
 
@@ -35,9 +43,9 @@ public class COVID extends Adventurer{
     return this.viralLoadMax;
   }
 
-  /*Deal 1-3 damage to opponent, restores 2 viralLoad*/
+  /*Deal 4-7 damage to opponent, restores 2 viralLoad*/
   public String attack(Adventurer other){
-    int damage = (int)(Math.random()*3)+1;
+    int damage = (int)(Math.random()*4)+4;
     damage = damage * immuneSystem;
     other.applyDamage(damage);
     restoreSpecial(2);
