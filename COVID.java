@@ -66,7 +66,7 @@ public class COVID extends Adventurer{
     }
 
   }
-  /*restore ally 4sp to an ally*/
+  /*restore 4sp to an ally*/
   public String support(Adventurer other){
     other.setSpecial(other.getSpecial()+4);
     return "transfer interstitial fluid to "+other+" and restored 4 chunks of viral load";
