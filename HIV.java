@@ -8,8 +8,6 @@ public class HIV extends Adventurer{
     super(name,hp);
     viralLoadMax = 12;
     viralLoad = viralLoadMax/2;
-    ImmuneSystem = 1;
-    infected = 0;
   }
 
   public HIV(String name){
