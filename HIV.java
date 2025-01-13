@@ -39,11 +39,19 @@ public class HIV extends Adventurer{
   }
 
   public void setSpecial(int n){
-    viralLoad = n;
+    this.viralLoad = n;
   }
 
   public int getSpecialMax(){
-    return viralLoadMax;
+    return this.viralLoadMax;
+  }
+  
+  public int getImmuneSystem(){
+    return this.ImmuneSystem
+  }
+  
+  public void setImmuneSystem(int n){
+    this.ImmuneSystem += n;
   }
 
   /*Deal 1-3 damage to opponent, restores 2 viralLoad*/
