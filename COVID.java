@@ -4,18 +4,18 @@ public class COVID extends Adventurer{
 
   /*the other constructors ultimately call the constructor
   *with all parameters.*/
-  public HIV(String name, int hp){
+  public COVID(String name, int hp){
     super(name,hp);
-    viralLoadMax = 12;
+    viralLoadMax = 20;
     viralLoad = viralLoadMax/2;
   }
 
-  public HIV(String name){
+  public COVID(String name){
     this(name,30);
   }
 
-  public HIV(){
-    this("HarryIvanVance");
+  public COVID(){
+    this("COdyVInnyDan");
   }
 
   /*The next 8 methods are all required because they are abstract:*/
