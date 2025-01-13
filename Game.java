@@ -109,6 +109,8 @@ public class Game{
       {
         TextBox(startRow, i*((WIDTH-4)/3+i-1)+2, (WIDTH-4)/3-1, 2, party.get(i)+"");
         drawText("HP: "+colorByPercent(party.get(i).getHP(), party.get(i).getmaxHP()), startRow+2, i*((WIDTH-4)/3+i-1)+2);
+        drawText(party.get(i).getSpecialName()+": "+colorByPercent(party.get(i).getSpecial(), party.get(i).getSpecialMax()), startRow+3, i*((WIDTH-4)/3+i-1)+2);
+        drawText("Immune system level: "+party.get(i).getImmuneSystem()+"x", startRow+4, i*((WIDTH-4)/3+i-1)+2);
       }
     }
 
