@@ -24,15 +24,6 @@ public class HIV extends Adventurer{
   public String getSpecialName(){
     return "viralLoad";
   }
-  
-  public int setInfected(int infected){
-    this.infected = infected;
-  }
-  
-  public int getInfected(){
-    return this.infected;
-  }
-  
 
   public int getSpecial(){
     return viralLoad;
@@ -57,6 +48,7 @@ public class HIV extends Adventurer{
   /*Deal 1-3 damage to opponent, restores 2 viralLoad*/
   public String attack(Adventurer other){
     int damage = (int)(Math.random()*3)+1;
+    damage = damage * immuneSystem;
     other.applyDamage(damage);
     restoreSpecial(2);
     return this + " attacked "+ other + " and dealt "+ damage +
