@@ -1,7 +1,7 @@
 import java.util.Random;
 public abstract class Adventurer{
   private String name;
-  private int HP,maxHP,immuneSystem,infected;
+  private int HP,maxHP,immuneSystem,infected, turn;
 
   //Abstract methods are meant to be implemented in child classes.
   /*
@@ -72,6 +72,18 @@ public abstract class Adventurer{
     this.immuneSystem = n;
   }
   
+  public int getTurn(){
+    return this.turn;
+  }
+  
+  public void setTurn(int n){
+    if (n < 0){
+      this.turn = 0;
+    }
+    else{
+      this.turn = n;
+    }
+  }
   //You did it wrong if this happens.
   public Adventurer(){
     this("Lester-the-noArg-constructor-string");
