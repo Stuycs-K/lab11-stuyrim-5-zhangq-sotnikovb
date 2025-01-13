@@ -53,7 +53,7 @@ public class Game{
   //use this method in your other text drawing methods to make things simpler.
   public static void drawText(String s,int startRow, int startCol){
     Text.go(startRow, startCol);
-    System.out.println(s);s
+    System.out.println(s);
   }
 
   /*Use this method to place text on the screen at a particular location.
@@ -67,21 +67,22 @@ public class Game{
   *@param height the number of rows
   */
   public static void TextBox(int row, int col, int width, int height, String text){
-    private ArrayList<String> textBits = new ArrayList<String>(height);
-    while(text.length() > width)
+    ArrayList<String> textBits = new ArrayList<String>(height);
+    while(text.length() > width+1)
     {
-      textBits.add(text.substring(0, width))
+      textBits.add(text.substring(0, width));
       text = text.substring(width);
     }
+    if (!text.equals(""))
+      textBits.add(text);
     while(textBits.size() > height)
-      textBits.remove(height+1);
-    while(textBits.get(height).length()<width)
-    {
-      textBits.set(height)
-    }
-    for (String words : textBits)
-    {
-      drawText(words, row, col);
+      textBits.remove(textBits.size()-1);
+    while(textBits.get(textBits.size()-1).length()<width)
+      textBits.set(textBits.size()-1, textBits.get(textBits.size()-1) + " ");
+    while(textBits.size() < height)
+      textBits.add(" ".repeat(width));
+    for (int i = 0; i<textBits.size(); i++) {
+      drawText(textBits.get(i), row+i, col);
     }
   }
 
