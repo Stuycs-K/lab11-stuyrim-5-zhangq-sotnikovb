@@ -2,6 +2,7 @@ import java.util.Random;
 public abstract class Adventurer{
   private String name;
   private int HP,maxHP,immuneSystem,infected, turn;
+  boolean Ally;
 
   //Abstract methods are meant to be implemented in child classes.
   /*
@@ -128,6 +129,9 @@ public abstract class Adventurer{
   public void setHP(int health){
     if (this.getHP() <= 0){
       this.HP = 0;
+    }
+    else if (health > this.getmaxHP()){
+      this.HP = this.getmaxHP();
     }
     else{
       this.HP = health;
