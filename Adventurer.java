@@ -108,7 +108,7 @@ public abstract class Adventurer{
 
   //toString method
   public String toString(){
-    return this.getName();
+    return this.getName()+" ("this.getType()+")";
   }
 
   //Get Methods
