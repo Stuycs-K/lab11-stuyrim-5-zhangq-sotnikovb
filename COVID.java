@@ -67,7 +67,7 @@ public class COVID extends Adventurer{
   public String specialAttack(Adventurer other){
     if(getSpecial() >= 10){
       setSpecial(getSpecial()-10);
-      other.applyDamage(12);
+      other.applyDamage(12*immuneSystem);
       return this.getName() +" struck toward "+other.getName()+", dealing 12 points of damage";
     }else{
       return "Failed to use special attack. Instead "+attack(other);
