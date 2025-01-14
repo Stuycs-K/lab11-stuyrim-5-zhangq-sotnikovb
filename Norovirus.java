@@ -33,7 +33,7 @@ public class Norovirus extends Adventurer{
   
  public String restoreSpecial(int n){
     this.setSpecial(this.getSpecial() + n);
-    return ("Restored self viralLoad by " + n + "sp. Now viralLoad: "+ this.getSpecial() + "/" + this.getSpecialMax()); 
+    return ("Restored self viralLoad by " + n + "sp."); 
   }
 
   public void setSpecial(int n){
@@ -47,12 +47,15 @@ public class Norovirus extends Adventurer{
     return this.viralLoadMax;
   }
 
-  /*Deal 5 damage to opponent, restores 2 viralLoad*/
+  public void applyDamage(int n){
+    this.setHP(this.getHP()-n);
+  }
+  
+  /*Deal 5 damage to opponent*/
   public String attack(Adventurer other){
     int damage = 5;
     damage = damage * immuneSystem;
     other.applyDamage(damage);
-    restoreSpecial(2);
     return this + " attacked "+ other + " and dealt "+ damage +
     " points of damage. They then regained 2 chunks of viralLoad";
   }
