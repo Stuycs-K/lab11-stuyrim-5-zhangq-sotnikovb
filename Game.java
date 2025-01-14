@@ -145,13 +145,17 @@ public class Game{
   }
 
   public static String userInput(Scanner in){
-      //Move cursor to prompt location
-
-      //show cursor
+      Text.go(8,2);
+      Text.showCursor();
 
       String input = in.nextLine();
 
-      //clear the text that was written
+      for (int i = 2; i<=WIDTH-1; i++)
+      {
+        Text.go(8,i);
+        System.out.print(" ");
+      }
+      Text.hideCursor();
 
       return input;
   }
