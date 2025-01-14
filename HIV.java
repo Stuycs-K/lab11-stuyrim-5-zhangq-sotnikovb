@@ -1,10 +1,9 @@
 public class HIV extends Adventurer{
   int viralLoad, viralLoadMax;
-  ArrayList<Adventurer> Ally, Enemy;
 
   /*the other constructors ultimately call the constructor
   *with all parameters.*/
-  public HIV(String name, int hp){
+  private HIV(String name, int hp){
     super(name,hp);
     viralLoadMax = 12;
     viralLoad = viralLoadMax/2;
@@ -19,6 +18,10 @@ public class HIV extends Adventurer{
   }
 
   /*The next 8 methods are all required because they are abstract:*/
+  
+  public String getType(){
+    return("HIV");
+  }
   public String getSpecialName(){
     return "viralLoad";
   }
@@ -39,10 +42,14 @@ public class HIV extends Adventurer{
   }
   
   public String restoreSpecial(int n){
-    this.setSpecial(this.getSpecial() + 2);
-    return ("Restored self viralLoad by 2sp. Now viralLoad: "+ this.getSpecial() + "/" + this.getSpecialMax());
+    this.setSpecial(this.getSpecial() + n);
+    return ("Restored self viralLoad by " + n + "sp. Now viralLoad: "+ this.getSpecial() + "/" + this.getSpecialMax());
   }
 
+  public void applyDamage(int n){
+    this.setHP(this.getHP()-n);
+  }
+  
   /*Deal 1-3 damage to opponent, restores 2 viralLoad*/
   public String attack(Adventurer other){
     int damage = (int)(Math.random()*3)+1;
@@ -84,6 +91,7 @@ public class HIV extends Adventurer{
   //Decrease enemy damage by 20% of max and deal 1 damage
   public void spAttackEffect (Adventurer other){
     other.setImmuneSystem(other.getImmuneSystem-0.2);
+    other.applyDamage(1);
     }
   
 }
