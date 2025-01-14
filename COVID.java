@@ -1,10 +1,9 @@
 public class COVID extends Adventurer{
   int viralLoad, viralLoadMax;
-  ArrayList<Adventurer> Ally, Enemy;
 
   /*the other constructors ultimately call the constructor
   *with all parameters.*/
-  public COVID(String name, int hp){
+  private COVID(String name, int hp){
     super(name,hp);
     viralLoadMax = 20;
     viralLoad = viralLoadMax/2;
@@ -19,6 +18,11 @@ public class COVID extends Adventurer{
   }
 
   /*The next 8 methods are all required because they are abstract:*/
+  
+  public String getType(){
+    return("COVID");
+  }
+  
   public String getSpecialName(){
     return "viralLoad";
   }
@@ -27,9 +31,9 @@ public class COVID extends Adventurer{
     return viralLoad;
   }
   
- public String restoreSpecial(int n){
-    this.setSpecial(this.getSpecial() + 2);
-    return ("Restored self viralLoad by 2sp. Now viralLoad: "+ this.getSpecial() + "/" + this.getSpecialMax());
+  public String restoreSpecial(int n){
+    this.setSpecial(this.getSpecial() + n);
+    return ("Restored self viralLoad by " + n + "sp. Now viralLoad: "+ this.getSpecial() + "/" + this.getSpecialMax());
   }
 
   public void setSpecial(int n){
@@ -41,6 +45,10 @@ public class COVID extends Adventurer{
 
   public int getSpecialMax(){
     return this.viralLoadMax;
+  }
+  
+  public void applyDamage(int n){
+    this.setHP(this.getHP()-n);
   }
 
   /*Deal 4-7 damage to opponent, restores 2 viralLoad*/
@@ -59,7 +67,7 @@ public class COVID extends Adventurer{
   public String specialAttack(Adventurer other){
     if(getSpecial() >= 10){
       setSpecial(getSpecial()-10);
-      other.setHP(other.getHP()-12);
+      other.applyDamage
       return this.getName() +" struck toward "+other.getName()+", dealing 12 points of damage";
     }else{
       return "Failed to use special attack. Instead "+attack(other);
