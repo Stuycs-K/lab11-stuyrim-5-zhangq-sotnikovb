@@ -18,11 +18,11 @@ public class COVID extends Adventurer{
   }
 
   /*The next 8 methods are all required because they are abstract:*/
-  
+
   public String getType(){
     return("COVID");
   }
-  
+
   public String getSpecialName(){
     return "viralLoad";
   }
@@ -30,7 +30,7 @@ public class COVID extends Adventurer{
   public int getSpecial(){
     return viralLoad;
   }
-  
+
   public String restoreSpecial(int n){
     this.setSpecial(this.getSpecial() + n);
     return ("Restored self viralLoad by " + n + "sp.");
@@ -46,7 +46,7 @@ public class COVID extends Adventurer{
   public int getSpecialMax(){
     return this.viralLoadMax;
   }
-  
+
   public void applyDamage(int n){
     this.setHP(this.getHP()-n);
   }
@@ -60,7 +60,7 @@ public class COVID extends Adventurer{
     " points of damage. They then regained 2 chunks of viralLoad";
   }
 
-  /*Choose an enemy, and deal 12 points of damage. 
+  /*Choose an enemy, and deal 12 points of damage.
   *Reduces viralLoad by 10.
   */
   public String specialAttack(Adventurer other){
@@ -73,12 +73,12 @@ public class COVID extends Adventurer{
     }
 
   }
-  /*restore 4sp to an ally*/
+  /*restore 4Hp to an ally*/
   public String support(Adventurer other){
-    other.setSpecial(other.getSpecial()+4);
-    return "transfer interstitial fluid to "+other+" and restored 4 chunks of viral load";
-  }
-  
+    other.setHP(other.getHP()+4);
+    return "transfer interstitial fluid to "+other+" and restored 4Hp";
+    }
+
   /*Restores 3 hp to self.*/
   public String support(){
     int hp = 3;
@@ -86,16 +86,3 @@ public class COVID extends Adventurer{
     return this+" gained interstitial fliud and restores 3hp";
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
