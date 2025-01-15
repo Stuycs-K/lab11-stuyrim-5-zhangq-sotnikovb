@@ -79,10 +79,10 @@ public class Norovirus extends Adventurer{
     return "transfer interstitial fluid to "+other+" and restored 4 chunks of viral load";
   }
 
-  /*Restores 3 hp to self.*/
+  /*Restores 2sp and 3 hp to self.*/
   public String support(){
-    int hp = 3;
-    setHP(getHP()+hp);
+    setSpecial(getSpecial()+2);
+    setHP(getHP()+3);
     return this+" gained interstitial fliud and restores 3 chunks of viral load";
   }
 }
