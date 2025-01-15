@@ -18,11 +18,11 @@ public class Norovirus extends Adventurer{
   }
 
   /*The next 8 methods are all required because they are abstract:*/
-  
+
   public String getType(){
     return("Norovirus");
   }
-  
+
   public String getSpecialName(){
     return "viralLoad";
   }
@@ -30,10 +30,10 @@ public class Norovirus extends Adventurer{
   public int getSpecial(){
     return viralLoad;
   }
-  
+
  public String restoreSpecial(int n){
     this.setSpecial(this.getSpecial() + n);
-    return ("Restored self viralLoad by " + n + "sp."); 
+    return ("Restored self viralLoad by " + n + "sp.");
   }
 
   public void setSpecial(int n){
@@ -50,7 +50,7 @@ public class Norovirus extends Adventurer{
   public void applyDamage(int n){
     this.setHP(this.getHP()-n);
   }
-  
+
   /*Deal 5 damage to opponent*/
   public String attack(Adventurer other){
     int damage = 5;
@@ -60,7 +60,7 @@ public class Norovirus extends Adventurer{
     " points of damage. They then regained 2 chunks of viralLoad";
   }
 
-  /*Choose an enemy, and it skips a turn. 
+  /*Choose an enemy, and it skips a turn.
   *Reduces viralLoad by 6.
   */
   public String specialAttack(Adventurer other){
@@ -78,7 +78,7 @@ public class Norovirus extends Adventurer{
     other.setSpecial(other.getSpecial()+4);
     return "transfer interstitial fluid to "+other+" and restored 4 chunks of viral load";
   }
-  
+
   /*Restores 3 hp to self.*/
   public String support(){
     int hp = 3;
@@ -86,16 +86,3 @@ public class Norovirus extends Adventurer{
     return this+" gained interstitial fliud and restores 3 chunks of viral load";
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
