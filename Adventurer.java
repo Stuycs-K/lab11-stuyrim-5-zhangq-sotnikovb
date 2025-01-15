@@ -68,7 +68,7 @@ public abstract class Adventurer{
     return this.infected;
   }
 
-  public int getImmuneSystem(){
+  public double getImmuneSystem(){
     return this.immuneSystem;
   }
 
