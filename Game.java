@@ -33,16 +33,16 @@ public class Game{
       System.out.print("*");
       if (i<7)
       {
-        Text.go(i,26);
+        Text.go(i,27);
         System.out.print("*");
-        Text.go(i,53);
+        Text.go(i,54);
         System.out.print("*");
       }
       if (i>HEIGHT-6)
       {
-        Text.go(i,26);
+        Text.go(i,27);
         System.out.print("*");
-        Text.go(i,53);
+        Text.go(i,54);
         System.out.print("*");
       }
       Text.color(BORDER_BACKGROUND, BORDER_COLOR);
@@ -108,7 +108,10 @@ public class Game{
     public static void drawParty(ArrayList<Adventurer> party,int startRow){
       for (int i = 0; i<party.size(); i++)
       {
-        TextBox(startRow, 2, 2, (i+1)*((WIDTH-4)/3), party.get(1));
+        TextBox(startRow, i*((WIDTH-4)/3+i)+1+Math.pow(1, i), (WIDTH-4)/3, 2, Text.colorize(party.get(i)+"", Text.WHITE, 0));
+        drawText("HP: "+colorByPercent(party.get(i).getHP(), party.get(i).getmaxHP()), startRow+2, i*((WIDTH-4)/3+i-1)+2);
+        drawText(party.get(i).getSpecialName()+": "+colorByPercent(party.get(i).getSpecial(), party.get(i).getSpecialMax()), startRow+3, i*((WIDTH-4)/3+i-1)+2);
+        drawText("Immune system level: "+party.get(i).getImmuneSystem()+"x", startRow+4, i*((WIDTH-4)/3+i-1)+2);
       }
     }
 
@@ -132,14 +135,11 @@ public class Game{
   //Display the party and enemies
   //Do not write over the blank areas where text will appear.
   //Place the cursor at the place where the user will by typing their input at the end of this method.
-  public static void drawScreen(){
-
+  public static void drawScreen(ArrayList<Adventurer> us, ArrayList<Adventurer> them)
+  {
     drawBackground();
-
-    //draw player party
-
-    //draw enemy party
-
+    drawParty(us, 2);
+    drawParty(them, 25);
   }
 
   public static String userInput(Scanner in){
@@ -171,16 +171,16 @@ public class Game{
     //If only 1 enemy is added it should be the boss class.
     //start with 1 boss and modify the code to allow 2-3 adventurers later.
     ArrayList<Adventurer>enemies = new ArrayList<Adventurer>();
-    /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-    //YOUR CODE HERE
-    /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+    enemies.add(createRandomAdventurer());
+    enemies.add(createRandomAdventurer());
+    enemies.add(createRandomAdventurer());
 
     //Adventurers you control:
     //Make an ArrayList of Adventurers and add 2-4 Adventurers to it.
     ArrayList<Adventurer> party = new ArrayList<>();
-    /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-    //YOUR CODE HERE
-    /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+    party.add(createRandomAdventurer());
+    party.add(createRandomAdventurer());
+    party.add(createRandomAdventurer());
 
     boolean partyTurn = true;
     int whichPlayer = 0;
@@ -191,19 +191,20 @@ public class Game{
     //Draw the window border
 
     //You can add parameters to draw screen!
-    drawScreen();//initial state.
+    drawScreen(party, enemies);//initial state.
 
     //Main loop
 
     //display this prompt at the start of the game.
     String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
+    String log = preprompt;
 
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
       //Read user input
       input = userInput(in);
 
       //example debug statment
-      TextBox(24,2,1,78,"input: "+input+" partyTurn:"+partyTurn+ " whichPlayer="+whichPlayer+ " whichOpp="+whichOpponent );
+
 
       //display event based on last turn's input
       if(partyTurn){
@@ -277,7 +278,7 @@ public class Game{
       }
 
       //display the updated screen after input has been processed.
-      drawScreen();
+      drawScreen(party, enemies);
 
 
     }//end of main game loop
