@@ -8,9 +8,9 @@
 
 :x: 2 required adventurer subclasses
 
-:x: stat display
+:O: stat display
 
-:x: description text
+:O: description text
 
 :x: win/loss condition
 
@@ -56,7 +56,7 @@ Special: Costs 10 pts. Deals 12 of damage.
 
 Support (self): Heals by 3 HP.
 
-Support (team): Teammate regains 4 pts of special.
+Support (team): Team heals by 4 HP.
 
 
 ### Norovirus
@@ -68,4 +68,4 @@ Special: Costs 6 pts. Enemy vomits. Skips turn.
 
 Support (self): Regains 2 pts of special. Heals by 3 HP.
 
-Support (team): Team heals by 4 HP.
+Support (team): Teammate regains 4 pts of special.
