@@ -39,7 +39,10 @@ public class CodeWarrior extends Adventurer{
   public int getSpecialMax(){
     return caffeineMax;
   }
-
+  
+  public String getType(){
+    return "CodeWarrior";
+  }
   /*Deal 2-7 damage to opponent, restores 2 caffeine*/
   public String attack(Adventurer other){
     int damage = (int)(Math.random()*6)+2;
