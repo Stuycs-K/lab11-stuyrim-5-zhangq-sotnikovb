@@ -95,7 +95,7 @@ public class Game{
     while(textBits.size() < height)
       textBits.add(" ".repeat(width));
     for (int i = 0; i<textBits.size(); i++) {
-      drawText(textBits.get(i), row+i, col);
+      drawText(Text.colorize(textBits.get(i), Text.WHITE, 0), row+i, col);
     }
   }
 
@@ -108,15 +108,7 @@ public class Game{
       return new CodeWarrior("Bob"+(int)(Math.random()*100));
     }
 
-    /*Display a List of 2-4 adventurers on the rows row through row+3 (4 rows max)
-    *Should include Name HP and Special on 3 separate lines.
-    *Note there is one blank row reserved for your use if you choose.
-    *Format:
-    *Bob          Amy        Jun
-    *HP: 10       HP: 15     HP:19
-    *Caffeine: 20 Mana: 10   Snark: 1
-    * ***THIS ROW INTENTIONALLY LEFT BLANK***
-    */
+
     public static void drawParty(ArrayList<Adventurer> party,int startRow){
       for (int i = 0; i<party.size(); i++)
       {
@@ -125,7 +117,7 @@ public class Game{
           col = 29;
         else if (i == 2)
           col = 55;
-        TextBox(startRow, col, 26, 2, Text.colorize(party.get(i)+"", Text.WHITE, 0));
+        TextBox(startRow, col, 25, 2, party.get(i)+"");
         drawText("HP: "+colorByPercent(party.get(i).getHP(), party.get(i).getmaxHP()), startRow+2, col);
         drawText(party.get(i).getSpecialName()+": "+colorByPercent(party.get(i).getSpecial(), party.get(i).getSpecialMax()), startRow+3, col);
         drawText("Immune system level: "+party.get(i).getImmuneSystem()+"x", startRow+4, col);
