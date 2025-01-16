@@ -136,9 +136,9 @@ public class Game{
   //Use this to create a colorized number string based on the % compared to the max value.
   public static String colorByPercent(int hp, int maxHP){
     String output = String.format("%2s", hp+"")+"/"+String.format("%2s", maxHP+"");
-    if (float(hp)/maxHP< 0.25)
+    if ((float)hp/maxHP< 0.25)
       output = Text.colorize(output, Text.RED);
-    else if (float(hp)/maxHP< 0.75)
+    else if ((float)hp/maxHP< 0.75)
       output = Text.colorize(output, Text.YELLOW);
     else
       output = Text.colorize(output, Text.WHITE);
