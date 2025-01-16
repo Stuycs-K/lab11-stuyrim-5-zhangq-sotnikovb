@@ -4,9 +4,12 @@ public class Game{
   private static final int HEIGHT = 30;
   private static final int BORDER_COLOR = Text.BLACK;
   private static final int BORDER_BACKGROUND = Text.WHITE + Text.BACKGROUND;
-  private static ArrayList
+  private static String clearSpaces = "";
+  private static ArrayList NAMES;
 
   public static void main(String[] args) {
+    while(clearSpaces.length()<WIDTH-2)
+      clearSpaces+=" ";
     run();
   }
 
@@ -33,14 +36,14 @@ public class Game{
       System.out.print("*");
       if (i<7)
       {
-        Text.go(i,27);
+        Text.go(i,28);
         System.out.print("*");
         Text.go(i,54);
         System.out.print("*");
       }
       if (i>HEIGHT-6)
       {
-        Text.go(i,27);
+        Text.go(i,28);
         System.out.print("*");
         Text.go(i,54);
         System.out.print("*");
@@ -69,17 +72,26 @@ public class Game{
   */
   public static void TextBox(int row, int col, int width, int height, String text){
     ArrayList<String> textBits = new ArrayList<String>(height);
-    while(text.length() > width+1)
+    for (int i = 1; i<text.length(); i++)
     {
-      textBits.add(text.substring(0, width));
-      text = text.substring(width);
+      if (i == width+1 || text.charAt(i-1) == '\n')
+      {
+        if (text.charAt(i-1) == '\n')
+          textBits.add(text.substring(0,i-1));
+        else
+          textBits.add(text.substring(0,i));
+        text = text.substring(i);
+        i = 0;
+      }
     }
     if (!text.equals(""))
       textBits.add(text);
     while(textBits.size() > height)
       textBits.remove(textBits.size()-1);
-    while(textBits.get(textBits.size()-1).length()<width)
-      textBits.set(textBits.size()-1, textBits.get(textBits.size()-1) + " ");
+    for (int i = 0; i<textBits.size(); i++) {
+      while(textBits.get(i).length()<width)
+        textBits.set(i, textBits.get(i) + " ");
+    }
     while(textBits.size() < height)
       textBits.add(" ".repeat(width));
     for (int i = 0; i<textBits.size(); i++) {
@@ -108,10 +120,15 @@ public class Game{
     public static void drawParty(ArrayList<Adventurer> party,int startRow){
       for (int i = 0; i<party.size(); i++)
       {
-        TextBox(startRow, i*((WIDTH-4)/3+i)+1+Math.pow(1, i), (WIDTH-4)/3, 2, Text.colorize(party.get(i)+"", Text.WHITE, 0));
-        drawText("HP: "+colorByPercent(party.get(i).getHP(), party.get(i).getmaxHP()), startRow+2, i*((WIDTH-4)/3+i-1)+2);
-        drawText(party.get(i).getSpecialName()+": "+colorByPercent(party.get(i).getSpecial(), party.get(i).getSpecialMax()), startRow+3, i*((WIDTH-4)/3+i-1)+2);
-        drawText("Immune system level: "+party.get(i).getImmuneSystem()+"x", startRow+4, i*((WIDTH-4)/3+i-1)+2);
+        int col = 2;
+        if (i == 1)
+          col = 29;
+        else if (i == 2)
+          col = 55;
+        TextBox(startRow, col, 26, 2, Text.colorize(party.get(i)+"", Text.WHITE, 0));
+        drawText("HP: "+colorByPercent(party.get(i).getHP(), party.get(i).getmaxHP()), startRow+2, col);
+        drawText(party.get(i).getSpecialName()+": "+colorByPercent(party.get(i).getSpecial(), party.get(i).getSpecialMax()), startRow+3, col);
+        drawText("Immune system level: "+party.get(i).getImmuneSystem()+"x", startRow+4, col);
       }
     }
 
@@ -144,12 +161,12 @@ public class Game{
 
   public static String userInput(Scanner in){
       //Move cursor to prompt location
-
+      Text.go(8, 2);
       //show cursor
-
+      Text.showCursor();
       String input = in.nextLine();
-
-      //clear the text that was written
+      Text.hideCursor();
+      drawText(Text.colorize(clearSpaces, Text.WHITE, 0), 8, 2);
 
       return input;
   }
@@ -198,11 +215,14 @@ public class Game{
     //display this prompt at the start of the game.
     String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
     String log = preprompt;
+    TextBox(9, 2, 78, 15, Text.colorize(log, Text.WHITE, 0));
 
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
       //Read user input
       input = userInput(in);
-
+      if (input != "")
+        log = input+"\n"+log;
+      TextBox(9, 2, 78, 15, Text.colorize(log, Text.WHITE, 0));
       //example debug statment
 
 
@@ -237,12 +257,14 @@ public class Game{
           //This is a player turn.
           //Decide where to draw the following prompt:
           String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
+          log = prompt+"\n"+log;
 
 
         }else{
           //This is after the player's turn, and allows the user to see the enemy turn
           //Decide where to draw the following prompt:
           String prompt = "press enter to see monster's turn";
+          log = prompt+"\n"+log;
 
           partyTurn = false;
           whichOpponent = 0;
@@ -261,6 +283,7 @@ public class Game{
 
         //Decide where to draw the following prompt:
         String prompt = "press enter to see next turn";
+        log = prompt+"\n"+log;
 
         whichOpponent++;
 
@@ -275,6 +298,7 @@ public class Game{
         partyTurn=true;
         //display this prompt before player's turn
         String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
+        log = prompt+"\n"+log;
       }
 
       //display the updated screen after input has been processed.
