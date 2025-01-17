@@ -10,7 +10,7 @@ public class Game{
   public static void main(String[] args) {
     while(clearSpaces.length()<WIDTH-2)
       clearSpaces+=" ";
-    this.NAMES = new ArrayList<String>{"Abby","Bob","Charlie","David", "Ethan", "Franz", "Gabriel"}
+    this.NAMES = new ArrayList<String>{"Abby","Bob","Charlie","David", "Ethan", "Franz", "Gabriel"};
     run();
   }
 
@@ -107,17 +107,20 @@ public class Game{
     //feel free to overload this method to allow specific names/stats.
     public static Adventurer createRandomAdventurer(){
       int choice = Math.Random()*4;
+      int index = Math.Random()*NAMES.size();
+      String name = NAMES.get(index);
+      NAMES.remove(index);
       if (choice == 0){
-        return new CodeWarrior("Bob"+(int)(Math.random()*100));
+        return new CodeWarrior(name);
       }
-      if (choice == 1){
-        return new HIV("Bob"+(int)(Math.random()*100));
+      else if (choice == 1){
+        return new HIV(name);
       }
-      if (choice == 2){
-        return new COVID("Bob"+(int)(Math.random()*100));
+      else if (choice == 2){
+        return new COVID(name);
       }
-      if (choice == 3){
-        return new Norovirus("Bob"+(int)(Math.random()*100));
+      else{
+        return new Norovirus(name);
       }
     }
 
