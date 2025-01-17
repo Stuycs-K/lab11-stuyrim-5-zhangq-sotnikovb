@@ -10,7 +10,7 @@ public class Game{
   public static void main(String[] args) {
     while(clearSpaces.length()<WIDTH-2)
       clearSpaces+=" ";
-    this.NAMES = new ArrayList<String>{"Abby","Bob","Charlie","David", "Ethan", "Franz", "Gabriel"}
+    NAMES.addAll(Arrays.asList(new String[]{"Abby","Bob","Charlie","David", "Ethan", "Franz", "Gabriel"}));
     run();
   }
 
@@ -106,18 +106,19 @@ public class Game{
     //return a random adventurer (choose between all available subclasses)
     //feel free to overload this method to allow specific names/stats.
     public static Adventurer createRandomAdventurer(){
-      int choice = Math.Random()*4;
+      int choice = Math.random()*4;
+      int index = Math.random()*NAMES.size();
       if (choice == 0){
-        return new CodeWarrior("Bob"+(int)(Math.random()*100));
+        return new CodeWarrior(NAMES.get(index));
       }
       if (choice == 1){
-        return new HIV("Bob"+(int)(Math.random()*100));
+        return new HIV(NAMES.get(index));
       }
       if (choice == 2){
-        return new COVID("Bob"+(int)(Math.random()*100));
+        return new COVID(NAMES.get(index));
       }
       if (choice == 3){
-        return new Norovirus("Bob"+(int)(Math.random()*100));
+        return new Norovirus(NAMES.get(index));
       }
     }
 
@@ -223,6 +224,7 @@ public class Game{
     TextBox(9, 2, 78, 15, Text.colorize(log, Text.WHITE, 0));
 
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
+      TextBox(9, 2, 78, 15, Text.colorize(log, Text.WHITE, 0));
       //Read user input
       input = userInput(in);
       if (input != "")
@@ -236,19 +238,16 @@ public class Game{
 
         //Process user input for the last Adventurer:
         if(input.startsWith("attack ") || input.startsWith("a ")){
-          party.get(whichPlayer).attack(enemies.get(Integer.parseInt(input.substring(input.indexOf(' ')+1))));
+          log = party.get(whichPlayer).attack(enemies.get(Integer.parseInt(input.substring(input.indexOf(' ')+1)))) + "\n" + log;
         }
         else if(input.equals("special") || input.equals("sp")){
-          /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-          //YOUR CODE HERE
-          /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+          log = party.get(whichPlayer).specialAttack(enemies.get(Integer.parseInt(input.substring(input.indexOf(' ')+1)))) + "\n" + log;
         }
         else if(input.startsWith("su ") || input.startsWith("support ")){
-          //"support 0" or "su 0" or "su 2" etc.
-          //assume the value that follows su  is an integer.
-          /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-          //YOUR CODE HERE
-          /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+          if (input.substring(input.indexOf(' ')+1).equals(""))
+            log = party.get(whichPlayer).support() + "\n" + log;
+          else
+            log = party.get(whichPlayer).support(party.get(Integer.parseInt(input.substring(input.indexOf(' ')+1)))) + "\n" + log;
         }
 
         //You should decide when you want to re-ask for user input

@@ -38,7 +38,7 @@ public class Norovirus extends Adventurer{
 
   public void setSpecial(int n){
     if (n > this.getSpecialMax()){
-      this.viralLoad = this.getSpecialMax()
+      this.viralLoad = this.getSpecialMax();
     }
     this.viralLoad = n;
   }

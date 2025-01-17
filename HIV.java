@@ -18,7 +18,7 @@ public class HIV extends Adventurer{
   }
 
   /*The next 8 methods are all required because they are abstract:*/
-  
+
   public String getType(){
     return("HIV");
   }
@@ -32,7 +32,7 @@ public class HIV extends Adventurer{
 
   public void setSpecial(int n){
     if (n > this.getSpecialMax()){
-      this.viralLoad = this.getSpecialMax()
+      this.viralLoad = this.getSpecialMax();
     }
     this.viralLoad = n;
   }
@@ -40,7 +40,7 @@ public class HIV extends Adventurer{
   public int getSpecialMax(){
     return this.viralLoadMax;
   }
-  
+
   public String restoreSpecial(int n){
     this.setSpecial(this.getSpecial() + n);
     return ("Restored self viralLoad by " + n + "sp.");
@@ -49,7 +49,7 @@ public class HIV extends Adventurer{
   public void applyDamage(int n){
     this.setHP(this.getHP()-n);
   }
-  
+
   /*Deal 1-3 damage to opponent*/
   public String attack(Adventurer other){
     int damage = (int)(Math.random()*3)+1;
@@ -59,8 +59,8 @@ public class HIV extends Adventurer{
     " points of damage. They then regained 2 chunks of viralLoad.";
   }
 
-  /*Choose an enemy, and after 3 turns deal 1 points of damage for 1 turn and get a damage debuff for 5 turns to it. 
-  *If the enemy support another enemy in those 3 turns, it can infect the other enemy.  
+  /*Choose an enemy, and after 3 turns deal 1 points of damage for 1 turn and get a damage debuff for 5 turns to it.
+  *If the enemy support another enemy in those 3 turns, it can infect the other enemy.
   *Reduces viralLoad by 6.
   */
   public String specialAttack(Adventurer other){
@@ -78,7 +78,7 @@ public class HIV extends Adventurer{
     other.setImmuneSystem(other.getImmuneSystem()+0.2);
     return "transfer interstitial fluid to "+other+" and increases ally damage by 1.2x";
   }
-  
+
   /*Restores 2 special and 4 hp to self.*/
   public String support(){
     int hp = 4;
@@ -86,24 +86,11 @@ public class HIV extends Adventurer{
     return this+" gained interstitial fliud and restores "+restoreSpecial(2)+" "
     + getSpecialName()+ " and "+hp+" HP";
   }
-  
+
   //Decrease enemy damage by 20% of max and deal 1 damage
   public void spAttackEffect (Adventurer other){
     other.setImmuneSystem(other.getImmuneSystem-0.2);
     other.applyDamage(1);
     }
-  
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
