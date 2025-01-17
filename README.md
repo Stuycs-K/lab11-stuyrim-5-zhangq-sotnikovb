@@ -1,16 +1,27 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/KprAwj1n)
 # APCS - Stuyrim
 
+:white_check_mark: This feature works.
+
+:question: This feature works partially.
+
+:ballot_box_with_check: This extra (beyond the things that the lab was supposed to do) feature works.
+
+:x: This required feature does not work.
+
+:beetle: This is a bug that affects the game.
+
+
 ## Features
 
 ### Required
-:x: add debuff system to adventurer
+:question: add debuff system to adventurer
 
-:x: 2 required adventurer subclasses
+:question: 2 required adventurer subclasses
 
-:O: stat display
+:white_check_mark: stat display
 
-:O: description text
+:white_check_mark: description text
 
 :x: win/loss condition
 
@@ -18,7 +29,7 @@
 
 
 ### Optional
-:x: 1 extra adventurer subclass
+:question: 1 extra adventurer subclass
 
 :x: multiple random rounds
 
@@ -26,11 +37,11 @@
 
 :x: items: bonuses, healing, etc.
 
-:x: immune level system (for buffs/debuffs and difficulty scaling)
+:white_check_mark: immune level system (for buffs/debuffs and difficulty scaling)
 
 :x: allow player to choose classes and names
 
-:x: random names for enemies
+:question: random names for enemies
 
 
 ## Adventurer Subclasses
