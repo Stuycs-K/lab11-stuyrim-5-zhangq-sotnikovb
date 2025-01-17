@@ -106,19 +106,21 @@ public class Game{
     //return a random adventurer (choose between all available subclasses)
     //feel free to overload this method to allow specific names/stats.
     public static Adventurer createRandomAdventurer(){
-      int choice = Math.random()*4;
-      int index = Math.random()*NAMES.size();
+      int choice = Math.Random()*4;
+      int index = Math.Random()*NAMES.size();
+      String name = NAMES.get(index);
+      NAMES.remove(index);
       if (choice == 0){
-        return new CodeWarrior(NAMES.get(index));
+        return new CodeWarrior(name);
       }
-      if (choice == 1){
-        return new HIV(NAMES.get(index));
+      else if (choice == 1){
+        return new HIV(name);
       }
-      if (choice == 2){
-        return new COVID(NAMES.get(index));
+      else if (choice == 2){
+        return new COVID(name);
       }
-      if (choice == 3){
-        return new Norovirus(NAMES.get(index));
+      else{
+        return new Norovirus(name);
       }
     }
 
