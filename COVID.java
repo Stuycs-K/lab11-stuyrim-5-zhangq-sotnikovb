@@ -47,14 +47,10 @@ public class COVID extends Adventurer{
     return this.viralLoadMax;
   }
 
-  public void applyDamage(int n){
-    this.setHP(this.getHP()-n);
-  }
-
   /*Deal 4-7 damage to opponent,*/
   public String attack(Adventurer other){
     int damage = (int)(Math.random()*4)+4;
-    damage = damage * immuneSystem;
+    damage = (int)(damage * getImmuneSystem());
     other.applyDamage(damage);
     return this + " attacked "+ other + " and dealt "+ damage +
     " points of damage. They then regained 2 chunks of viralLoad";
@@ -66,7 +62,7 @@ public class COVID extends Adventurer{
   public String specialAttack(Adventurer other){
     if(getSpecial() >= 10){
       setSpecial(getSpecial()-10);
-      other.applyDamage(12*immuneSystem);
+      other.applyDamage((int)(12*getImmuneSystem()));
       return this.getName() +" struck toward "+other.getName()+", dealing 12 points of damage";
     }else{
       return "Failed to use special attack. Instead "+attack(other);

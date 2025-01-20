@@ -47,14 +47,10 @@ public class Norovirus extends Adventurer{
     return this.viralLoadMax;
   }
 
-  public void applyDamage(int n){
-    this.setHP(this.getHP()-n);
-  }
-
   /*Deal 5 damage to opponent*/
   public String attack(Adventurer other){
     int damage = 5;
-    damage = damage * immuneSystem;
+    damage = (int)(damage * getImmuneSystem());
     other.applyDamage(damage);
     return this + " attacked "+ other + " and dealt "+ damage +
     " points of damage. They then regained 2 chunks of viralLoad";

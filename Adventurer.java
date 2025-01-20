@@ -18,16 +18,6 @@ public abstract class Adventurer{
   public abstract int getSpecialMax();
   public abstract void setSpecial(int n);
 
-  //concrete method written using abstract methods.
-  //refill special resource by amount, but only up to at most getSpecialMax()
-  public int restoreSpecial(int n){
-    if( n > getSpecialMax() - getSpecial()){
-      n = getSpecialMax() - getSpecial();
-    }
-    setSpecial(getSpecial()+n);
-    return n;
-  }
-
   /*
   all adventurers must have a way to attack enemies and
   support their allys
@@ -49,7 +39,12 @@ public abstract class Adventurer{
 
   //hurt or hinder the target adventurer, consume some special resource
   public abstract String specialAttack(Adventurer other);
-  
+
+  public String restoreSpecial(int n){
+    this.setSpecial(this.getSpecial() + n);
+    return ("Restored self "+getSpecialName()+" by " + n + "sp.");
+  }
+
   public abstract String getType();
 
   /*
@@ -72,7 +67,7 @@ public abstract class Adventurer{
     return this.immuneSystem;
   }
 
-  public void setImmuneSystem(int n){
+  public void setImmuneSystem(double n){
     this.immuneSystem = n;
   }
 

@@ -5,12 +5,12 @@ public class Game{
   private static final int BORDER_COLOR = Text.BLACK;
   private static final int BORDER_BACKGROUND = Text.WHITE + Text.BACKGROUND;
   private static String clearSpaces = "";
-  private static ArrayList<String> NAMES;
+  private static ArrayList<String> NAMES = new ArrayList<String>();
 
   public static void main(String[] args) {
     while(clearSpaces.length()<WIDTH-2)
       clearSpaces+=" ";
-    NAMES.addAll(Arrays.asList(new String[]{"Abby","Bob","Charlie","David", "Ethan", "Franz", "Gabriel"}));
+    NAMES.addAll(Arrays.asList(new String[]{"Abby","Bob","Charlie","David", "Ethan", "Franz", "Gabriel", "John", "Jim", "Bill", "Paul"}));
     run();
   }
 
@@ -75,7 +75,7 @@ public class Game{
     ArrayList<String> textBits = new ArrayList<String>(height);
     for (int i = 1; i<text.length(); i++)
     {
-      if (i == width+1 || text.charAt(i-1) == '\n')
+      if (i == width-1 || text.charAt(i-1) == '\n')
       {
         if (text.charAt(i-1) == '\n')
           textBits.add(text.substring(0,i-1));
@@ -106,8 +106,8 @@ public class Game{
     //return a random adventurer (choose between all available subclasses)
     //feel free to overload this method to allow specific names/stats.
     public static Adventurer createRandomAdventurer(){
-      int choice = Math.Random()*4;
-      int index = Math.Random()*NAMES.size();
+      int choice = (int)(Math.random()*4);
+      int index = (int)(Math.random()*NAMES.size());
       String name = NAMES.get(index);
       NAMES.remove(index);
       if (choice == 0){

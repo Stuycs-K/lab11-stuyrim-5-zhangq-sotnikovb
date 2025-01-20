@@ -46,14 +46,10 @@ public class HIV extends Adventurer{
     return ("Restored self viralLoad by " + n + "sp.");
   }
 
-  public void applyDamage(int n){
-    this.setHP(this.getHP()-n);
-  }
-
   /*Deal 1-3 damage to opponent*/
   public String attack(Adventurer other){
     int damage = (int)(Math.random()*3)+1;
-    damage = damage * immuneSystem;
+    damage = (int)(damage * getImmuneSystem());
     other.applyDamage(damage);
     return this + " attacked "+ other + " and dealt "+ damage +
     " points of damage. They then regained 2 chunks of viralLoad.";
@@ -89,7 +85,7 @@ public class HIV extends Adventurer{
 
   //Decrease enemy damage by 20% of max and deal 1 damage
   public void spAttackEffect (Adventurer other){
-    other.setImmuneSystem(other.getImmuneSystem-0.2);
+    other.setImmuneSystem(other.getImmuneSystem()-0.2);
     other.applyDamage(1);
     }
 
