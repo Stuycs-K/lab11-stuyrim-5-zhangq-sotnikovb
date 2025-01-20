@@ -239,14 +239,14 @@ public class Game{
       if(partyTurn){
 
         //Process user input for the last Adventurer:
-        if(input.startsWith("attack ") || input.startsWith("a ")){
+        if(input.startsWith("attack ") || input.startsWith("a")){
           log = party.get(whichPlayer).attack(enemies.get(Integer.parseInt(input.substring(input.indexOf(' ')+1)))) + "\n" + log;
         }
-        else if(input.equals("special") || input.equals("sp")){
+        else if(input.startsWith("special ") || input.startsWith("sp")){
           log = party.get(whichPlayer).specialAttack(enemies.get(Integer.parseInt(input.substring(input.indexOf(' ')+1)))) + "\n" + log;
         }
-        else if(input.startsWith("su ") || input.startsWith("support ")){
-          if (input.substring(input.indexOf(' ')+1).equals(""))
+        else if(input.startsWith("support ") || input.startsWith("su")){
+          if (!input.contains(" "))
             log = party.get(whichPlayer).support() + "\n" + log;
           else
             log = party.get(whichPlayer).support(party.get(Integer.parseInt(input.substring(input.indexOf(' ')+1)))) + "\n" + log;

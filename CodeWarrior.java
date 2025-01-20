@@ -39,7 +39,12 @@ public class CodeWarrior extends Adventurer{
   public int getSpecialMax(){
     return caffeineMax;
   }
-  
+
+  public String restoreSpecial(int n){
+    this.setSpecial(this.getSpecial() + n);
+    return ("Restored self viralLoad by " + n + "sp.");
+  }
+
   public String getType(){
     return "CodeWarrior";
   }
