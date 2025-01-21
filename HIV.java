@@ -35,7 +35,12 @@ public class HIV extends Adventurer{
     if (n > this.getSpecialMax()){
       this.viralLoad = this.getSpecialMax();
     }
-    this.viralLoad = n;
+	else if (n < 0){
+		this.viralLoad = 0;
+	}
+	else{
+		this.viralLoad = n;
+	}
   }
 
   public int getSpecialMax(){

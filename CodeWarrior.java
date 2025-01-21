@@ -34,7 +34,15 @@ public class CodeWarrior extends Adventurer{
   }
 
   public void setSpecial(int n){
-    caffeine = n;
+    if (n > this.getSpecialMax()){
+      this.caffeine = this.getSpecialMax();
+    }
+	else if (n < 0){
+		this.caffeine = 0;
+	}
+	else{
+		this.caffeine = n;
+	}
   }
 
   public int getSpecialMax(){
