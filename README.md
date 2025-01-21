@@ -18,19 +18,19 @@
 
 
 ### Optional
-:white_check_mark: 1 extra adventurer subclass
+:ballot_box_with_check: 1 extra adventurer subclass
 
-:white_check_mark: multiple random rounds
+:ballot_box_with_check: multiple random rounds
 
 :x: boss
 
 :x: items: bonuses, healing, etc.
 
-:white_check_mark: immune level system (for buffs/debuffs and difficulty scaling)
+:ballot_box_with_check: immune level system (for buffs/debuffs and difficulty scaling)
 
 :x: allow player to choose classes and names
 
-:white_check_mark: random names for enemies
+:ballot_box_with_check: random names for enemies
 
 
 ## Adventurer Subclasses
