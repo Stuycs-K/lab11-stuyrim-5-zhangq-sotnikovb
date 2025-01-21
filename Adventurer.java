@@ -1,4 +1,4 @@
-import java.util.Random;
+import java.util.*;
 public abstract class Adventurer{
   private String name;
   private int HP,maxHP,infected, turn;
@@ -139,4 +139,6 @@ public abstract class Adventurer{
   public void setName(String s){
     this.name = s;
   }
+
+  public abstract String takeTurn(ArrayList<Adventurer> own, ArrayList<Adventurer> enemies);
 }

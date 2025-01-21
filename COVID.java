@@ -1,3 +1,4 @@
+import java.util.*;
 public class COVID extends Adventurer{
   int viralLoad, viralLoadMax;
 
@@ -80,5 +81,18 @@ public class COVID extends Adventurer{
     int hp = 3;
     setHP(getHP()+hp);
     return this+" gained interstitial fliud and restores 3hp";
+  }
+
+  public String takeTurn(ArrayList<Adventurer> own, ArrayList<Adventurer> enemies)
+  {
+    if (getHP()<6)
+      return support();
+    else if (getSpecial()>14)
+      return specialAttack(enemies.get((int)(Math.random()*3)));
+    for (Adventurer ally : own) {
+      if (ally!=this && ally.getHP()<6)
+        return support(ally);
+    }
+    return attack(enemies.get((int)(Math.random()*3)));
   }
 }

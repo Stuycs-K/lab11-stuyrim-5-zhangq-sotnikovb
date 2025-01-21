@@ -1,3 +1,4 @@
+import java.util.*;
 public class CodeWarrior extends Adventurer{
   int caffeine, caffeineMax;
   String preferredLanguage;
@@ -85,4 +86,17 @@ public class CodeWarrior extends Adventurer{
     return this+" drinks a coffee to restores "+restoreSpecial(6)+" "
     + getSpecialName()+ " and "+hp+" HP";
   }
+
+  public String takeTurn(ArrayList<Adventurer> own, ArrayList<Adventurer> enemies)
+    {
+      if (getHP()<6)
+        return support();
+      else if (getSpecial()>10)
+        return specialAttack(enemies.get((int)(Math.random()*3)));
+      else
+        if(Math.random()*2 == 0)
+          return support(own.get((int)(Math.random()*3)));
+        else
+          return attack(enemies.get((int)(Math.random()*3)));
+    }
 }

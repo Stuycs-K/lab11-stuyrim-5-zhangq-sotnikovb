@@ -1,3 +1,4 @@
+import java.util.*;
 public class Norovirus extends Adventurer{
   int viralLoad, viralLoadMax;
 
@@ -81,4 +82,17 @@ public class Norovirus extends Adventurer{
     setHP(getHP()+3);
     return this+" gained interstitial fliud and restores 3 chunks of viral load";
   }
+
+  public String takeTurn(ArrayList<Adventurer> own, ArrayList<Adventurer> enemies)
+    {
+      if (getHP()<6)
+        return support();
+      else if (getSpecial()>9)
+        return specialAttack(enemies.get((int)(Math.random()*3)));
+      else
+        if(Math.random()*2 == 0)
+          return support(own.get((int)(Math.random()*3)));
+        else
+          return attack(enemies.get((int)(Math.random()*3)));
+    }
 }

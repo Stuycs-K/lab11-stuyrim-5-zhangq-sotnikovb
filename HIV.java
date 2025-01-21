@@ -1,3 +1,4 @@
+import java.util.*;
 public class HIV extends Adventurer{
   int viralLoad, viralLoadMax;
 
@@ -84,9 +85,21 @@ public class HIV extends Adventurer{
   }
 
   //Decrease enemy damage by 20% of max and deal 1 damage
-  public void spAttackEffect (Adventurer other){
+  public static void spAttackEffect (Adventurer other){
     other.setImmuneSystem(other.getImmuneSystem()-0.2);
     other.applyDamage(1);
     }
 
+    public String takeTurn(ArrayList<Adventurer> own, ArrayList<Adventurer> enemies)
+    {
+      if (getHP()<6)
+        return support();
+      else if (getSpecial()>9)
+        return specialAttack(enemies.get((int)(Math.random()*3)));
+      else
+        if(Math.random()*2 == 0)
+          return support(own.get((int)(Math.random()*3)));
+        else
+          return attack(enemies.get((int)(Math.random()*3)));
+    }
 }
