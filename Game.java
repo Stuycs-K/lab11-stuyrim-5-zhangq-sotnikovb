@@ -234,7 +234,7 @@ public class Game{
       TextBox(9, 2, 78, 15, Text.colorize(log, Text.WHITE, 0));
       //example debug statment
       //display event based on last turn's input
-      if(partyTurn){
+      if(partyTurn && party.get(whichPlayer).getTurn()>0){
 
         //Process user input for the last Adventurer:
         if(input.startsWith("attack ") || input.startsWith("a")){
@@ -277,6 +277,8 @@ public class Game{
         }
         //done with one party member
       }else{
+		  if (enemies.get(whichOpponent).getTurn()>0){
+		  }
         //not the party turn!
 
 
@@ -304,6 +306,7 @@ public class Game{
         for (Adventurer allies : party){
             allies.setImmuneSystem(1.0);
 			allies.restoreSpecial(1);
+			allies.setTurn(1);
 			if (allies.getInfected()>1 && allies.getInfected()<6){
 				HIV.spAttackEffect(allies);
 			}
@@ -312,6 +315,7 @@ public class Game{
         for (Adventurer enemy : enemies){
             enemy.setImmuneSystem(1.0);
 			enemy.restoreSpecial(1);
+			enemy.setTurn(1);
 			if (enemy.getInfected()>1 && enemy.getInfected()<6){
 				HIV.spAttackEffect(enemy);
 			}
