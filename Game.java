@@ -314,6 +314,8 @@ public class Game{
 			enemy.setInfected(enemy.getInfected()-1);
         }		
         partyTurn=true;
+		String displayTurn = "This is turn " + turn + ".\n";
+		log = displayTurn + log; 
         //display this prompt before player's turn
         String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit";
         log = prompt+"\n"+log;
