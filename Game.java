@@ -253,7 +253,11 @@ public class Game{
             }
 			log = party.get(whichPlayer).support(party.get(Integer.parseInt(input.substring(input.indexOf(' ')+1)))) + "\n" + log;
         }
-
+		else{
+			log = "this is not a valid move. you can input attack/special/support followed by a space then a number to use your move. Input quit to end.\n" + log;
+			log = preprompt + "\n" + log;
+			continue;
+		}
         //You should decide when you want to re-ask for user input
         //If no errors:
         whichPlayer++;

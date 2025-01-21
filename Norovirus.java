@@ -63,7 +63,7 @@ public class Norovirus extends Adventurer{
   public String specialAttack(Adventurer other){
     if(getSpecial() >= 6){
       setSpecial(getSpecial()-6);
-      other.setTurn(other.getTurn()-1);
+      other.setTurn(0);
       return this.getName() +" vomits toward "+other.getName()+", causing it to skip a round";
     }else{
       return "Failed to use special attack. Instead "+attack(other);
