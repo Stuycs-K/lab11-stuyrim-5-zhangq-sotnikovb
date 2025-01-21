@@ -69,7 +69,7 @@ public class HIV extends Adventurer{
     if(getSpecial() >= 6){
       setSpecial(getSpecial()-6);
       other.setInfected (7);
-      return this.getName() +" puked out virus to "+other.getName()+", but nothing seems to happen now...";
+      return this +" puked out virus to "+other.getName()+", but nothing seems to happen now...";
     }else{
       return "Failed to use special attack. Instead "+attack(other);
     }
@@ -77,10 +77,10 @@ public class HIV extends Adventurer{
   }
   /*Increase ally damage by 20% of the original */
   public String support(Adventurer other){
-	String statement = this.getName()+" transfer interstitial fluid to "+other+" and increases ally damage by 1.2x";
+	String statement = this+" transfer interstitial fluid to "+other+" and increases ally damage by 1.2x";
 	if (this.getInfected()>0){
 		other.setInfected(7);
-		statement = this.getName() + " infected " + other.getName()+ "\n" +statement;
+		statement = this + " infected " + other.getName()+ "\n" +statement;
     }
     other.setImmuneSystem(other.getImmuneSystem()+0.2);
     return statement;
@@ -90,7 +90,7 @@ public class HIV extends Adventurer{
   public String support(){
     int hp = 4;
     setHP(getHP()+hp);
-    return this.getName()+" gained interstitial fliud and restores "+restoreSpecial(2)+" "
+    return this+" gained interstitial fliud and restores "+restoreSpecial(2)+" "
     + getSpecialName()+ " and "+hp+" HP";
   }
 

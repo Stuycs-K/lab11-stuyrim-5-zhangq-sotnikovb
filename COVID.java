@@ -69,7 +69,7 @@ public class COVID extends Adventurer{
     if(getSpecial() >= 10){
       setSpecial(getSpecial()-10);
       other.applyDamage((int)(12*getImmuneSystem()));
-      return this.getName() +" struck toward "+other.getName()+", dealing 12 points of damage";
+      return this +" struck toward "+other.getName()+", dealing 12 points of damage";
     }else{
       return "Failed to use special attack. Instead "+attack(other);
     }
@@ -77,10 +77,10 @@ public class COVID extends Adventurer{
   }
   /*restore 4Hp to an ally*/
   public String support(Adventurer other){
-	  String statement = this.getName() + " transfer interstitial fluid to "+other+" and restored 4Hp";
+	  String statement = this + " transfer interstitial fluid to "+other+" and restored 4Hp";
 	  if (this.getInfected()>0){
 		  other.setInfected(7);
-		  statement = this.getName() + " infected " + other.getName()+ "\n" +statement;
+		  statement = this + " infected " + other.getName()+ "\n" +statement;
     }
     other.setHP(other.getHP()+4);
     return statement;
@@ -90,7 +90,7 @@ public class COVID extends Adventurer{
   public String support(){
     int hp = 3;
     setHP(getHP()+hp);
-    return this.getName()+" gained interstitial fliud and restores 3hp";
+    return this+" gained interstitial fliud and restores 3hp";
   }
 
   public String takeTurn(ArrayList<Adventurer> own, ArrayList<Adventurer> enemies)

@@ -69,7 +69,7 @@ public class Norovirus extends Adventurer{
     if(getSpecial() >= 6){
       setSpecial(getSpecial()-6);
       other.setTurn(0);
-      return this.getName() +" vomits toward "+other.getName()+", causing it to skip a round";
+      return this +" vomits toward "+other.getName()+", causing it to skip a round";
     }else{
       return "Failed to use special attack. Instead "+attack(other);
     }
@@ -77,10 +77,10 @@ public class Norovirus extends Adventurer{
   }
   /*restore 4sp to an ally*/
   public String support(Adventurer other){
-	String statement = this.getName()+" transfer interstitial fluid to "+other+" and restored 4 chunks of viral load";
+	String statement = this+" transfer interstitial fluid to "+other+" and restored 4 chunks of viral load";
 	if (this.getInfected()>0){
 		other.setInfected(7);
-		statement = this.getName() + " infected " + other.getName()+ "\n" +statement;
+		statement = this + " infected " + other.getName()+ "\n" +statement;
     }
     other.setSpecial(other.getSpecial()+4);
     return statement;
@@ -90,7 +90,7 @@ public class Norovirus extends Adventurer{
   public String support(){
     setSpecial(getSpecial()+2);
     setHP(getHP()+3);
-    return this.getName()+" gained interstitial fliud and restores 3 chunks of viral load";
+    return this+" gained interstitial fliud and restores 3 chunks of viral load";
   }
 
   public String takeTurn(ArrayList<Adventurer> own, ArrayList<Adventurer> enemies)
