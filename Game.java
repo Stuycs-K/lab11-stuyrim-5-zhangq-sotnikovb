@@ -211,6 +211,7 @@ public class Game{
     int whichPlayer = 0;
     int whichOpponent = 0;
     int turn = 0;
+    int round = 0;
     String input = "";//blank to get into the main loop.
     Scanner in = new Scanner(System.in);
     //Draw the window border
@@ -297,11 +298,34 @@ public class Game{
         }else{
           //This is after the player's turn, and allows the user to see the enemy turn
           //Decide where to draw the following prompt:
-          String prompt = "press enter to see enemy turns";
-          log = prompt+"\n"+log;
+          if (enemies.get(0).getHP()<=0 && enemies.get(1).getHP()<=0 && enemies.get(2).getHP()<=0)
+          {
+            String prompt = "You stumble upon another group of foes.\nYour party rests and replenishes its health.\nYou have defeated your enemies.";
+            NAMES.add(enemies.get(0).getName());
+            NAMES.add(enemies.get(1).getName());
+            NAMES.add(enemies.get(2).getName());
+            enemies.remove(0);
+            enemies.remove(0);
+            enemies.remove(0);
+            enemies.add(createRandomAdventurer());
+            enemies.add(createRandomAdventurer());
+            enemies.add(createRandomAdventurer());
+            whichPlayer = 0;
+            turn = 0;
+            round++;
+            prompt = "Round: "+round+"\n"+prompt;
+            log = prompt+"\n"+log;
+            prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit";
+            log = prompt+"\n"+log;
+          }
+          else
+          {
+            String prompt = "press enter to see enemy turns";
+            log = prompt+"\n"+log;
 
-          partyTurn = false;
-          whichOpponent = 0;
+            partyTurn = false;
+            whichOpponent = 0;
+          }
         }
         //done with one party member
       }else{
