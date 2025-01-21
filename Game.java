@@ -240,21 +240,41 @@ public class Game{
           log = party.get(whichPlayer)+" is dead.\n"+log;
         //Process user input for the last Adventurer:
         else{
-        if(input.startsWith("attack ") || input.startsWith("a")){
-          log = party.get(whichPlayer).attack(enemies.get(Integer.parseInt(input.substring(input.indexOf(' ')+1)))) + "\n" + log;
+        if(input.startsWith("attack ") || input.startsWith("a ")){
+          if (input.length()>input.indexOf(' ')+1 && Integer.parseInt(input.substring(input.indexOf(' ')+1)) <3 && enemies.get(Integer.parseInt(input.substring(input.indexOf(' ')+1))).getHP()>0)
+            log = party.get(whichPlayer).attack(enemies.get(Integer.parseInt(input.substring(input.indexOf(' ')+1)))) + "\n" + log;
+          else
+          {
+            log = "this is not a valid character index.\n" + log;
+            log = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit\n" + log;
+            continue;
+          }
         }
-        else if(input.startsWith("special ") || input.startsWith("sp")){
-          log = party.get(whichPlayer).specialAttack(enemies.get(Integer.parseInt(input.substring(input.indexOf(' ')+1)))) + "\n" + log;
+        else if(input.startsWith("special ") || input.startsWith("sp ")){
+          if (input.length()>input.indexOf(' ')+1 && Integer.parseInt(input.substring(input.indexOf(' ')+1)) <3 && enemies.get(Integer.parseInt(input.substring(input.indexOf(' ')+1))).getHP()>0)
+            log = party.get(whichPlayer).specialAttack(enemies.get(Integer.parseInt(input.substring(input.indexOf(' ')+1)))) + "\n" + log;
+          else
+          {
+            log = "this is not a valid character index.\n" + log;
+            log = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit\n" + log;
+            continue;
+          }
         }
-        else if(input.startsWith("support ") || input.startsWith("su")){
+        else if(input.startsWith("support") || input.startsWith("su")){
           if (!input.contains(" "))
             log = party.get(whichPlayer).support() + "\n" + log;
+          else if (party.get(whichPlayer).getInfected()>0){
+				    party.get(Integer.parseInt(input.substring(input.indexOf(' ')+1))).setInfected(8);
+				    log = party.get(whichPlayer).getName() + " infected " + party.get(Integer.parseInt(input.substring(input.indexOf(' ')+1))).getName();
+          }
+          if (input.length()>input.indexOf(' ')+1 && Integer.parseInt(input.substring(input.indexOf(' ')+1)) <3 && enemies.get(Integer.parseInt(input.substring(input.indexOf(' ')+1))).getHP()>0)
+		       log = party.get(whichPlayer).support(party.get(Integer.parseInt(input.substring(input.indexOf(' ')+1)))) + "\n" + log;
           else
-			if (party.get(whichPlayer).getInfected()>0){
-				party.get(Integer.parseInt(input.substring(input.indexOf(' ')+1))).setInfected(8);
-				log = party.get(whichPlayer).getName() + " infected " + party.get(Integer.parseInt(input.substring(input.indexOf(' ')+1))).getName();
-            }
-			log = party.get(whichPlayer).support(party.get(Integer.parseInt(input.substring(input.indexOf(' ')+1)))) + "\n" + log;
+          {
+           log = "this is not a valid character index.\n" + log;
+           log = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit\n" + log;
+           continue;
+          }
         }
       else{
         log = "this is not a valid move. you can input attack/special/support followed by a space then a number to use your move. Input quit to end.\n" + log;

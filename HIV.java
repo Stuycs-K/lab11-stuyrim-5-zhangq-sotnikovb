@@ -97,9 +97,11 @@ public class HIV extends Adventurer{
       else if (getSpecial()>9)
         return specialAttack(enemies.get((int)(Math.random()*3)));
       else
+      {
         if(Math.random()*2 == 0)
           return support(own.get((int)(Math.random()*3)));
         else
           return attack(enemies.get((int)(Math.random()*3)));
+      }
     }
 }
