@@ -219,7 +219,7 @@ public class Game{
     //Main loop
 
     //display this prompt at the start of the game.
-    String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit\nDefeat all enemies at once to advance to the next round. Keep in mind: enemies can be revived by their teammates after death.";
+    String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit\nDefeat all enemies at once to advance to the next round.";
     String log = preprompt;
     TextBox(9, 2, 78, 15, Text.colorize(log, Text.WHITE, 0));
 
