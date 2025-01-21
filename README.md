@@ -12,25 +12,25 @@
 
 :white_check_mark: description text
 
-:x: win/loss condition
+:white_check_mark: win/loss condition
 
-:x: gameplay loop
+:white_check_mark: gameplay loop
 
 
 ### Optional
-:white_check_mark: 1 extra adventurer subclass
+:ballot_box_with_check: 1 extra adventurer subclass
 
-:x: multiple random rounds
+:ballot_box_with_check: multiple random rounds
 
 :x: boss
 
 :x: items: bonuses, healing, etc.
 
-:white_check_mark: immune level system (for buffs/debuffs and difficulty scaling)
+:ballot_box_with_check: immune level system (for buffs/debuffs and difficulty scaling)
 
 :x: allow player to choose classes and names
 
-:white_check_mark: random names for enemies
+:ballot_box_with_check: random names for enemies
 
 
 ## Adventurer Subclasses
@@ -40,7 +40,7 @@ HP: 30
 
 Attack: 1-3 pts
 
-Special: Costs 6 pts. Infect an enemy. 3 turns later, the enemy will be dealt 1 damage per turn and be affected by a damage debuff for 5 turns. During the first 3 turns after the infection, the enemy can spread it to its teammates by supporting them.
+Special: Costs 6 pts. Infect an enemy. 2 turns later, the enemy will be dealt 1 damage per turn and be affected by a damage debuff for 5 turns. During the first 3 turns after the infection, the enemy can spread it to its teammates by supporting them.
 
 Support (self): Regains 2 points of special. Heals by 4 HP.
 

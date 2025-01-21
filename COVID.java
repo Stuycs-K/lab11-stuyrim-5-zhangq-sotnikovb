@@ -72,13 +72,13 @@ public class COVID extends Adventurer{
   }
   /*restore 4Hp to an ally*/
   public String support(Adventurer other){
-	String statement = this.getName() + " transfer interstitial fluid to "+other+" and restored 4Hp";
-	if (this.getInfected()>0){
-		other.setInfected(8);
-		statement = this.getName() + " infected " + other.getName();
-  }
-  other.setHP(other.getHP()+4);
-  return statement;
+	  String statement = this.getName() + " transfer interstitial fluid to "+other+" and restored 4Hp";
+	  if (this.getInfected()>0){
+		  other.setInfected(7);
+		  statement = this.getName() + " infected " + other.getName()+ "\n" +statement;
+    }
+    other.setHP(other.getHP()+4);
+    return statement;
   }
 
   /*Restores 3 hp to self.*/
@@ -95,7 +95,7 @@ public class COVID extends Adventurer{
     else if (getSpecial()>14)
       return specialAttack(enemies.get((int)(Math.random()*3)));
     for (Adventurer ally : own) {
-      if (ally!=this && ally.getHP()<6)
+      if (ally!=this && ally.getHP()<6 && ally.getHP()>0)
         return support(ally);
     }
     return attack(enemies.get((int)(Math.random()*3)));

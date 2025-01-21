@@ -74,7 +74,7 @@ public class Norovirus extends Adventurer{
   public String support(Adventurer other){
 	String statement = "transfer interstitial fluid to "+other+" and restored 4 chunks of viral load";
 	if (this.getInfected()>0){
-		other.setInfected(8);
+		other.setInfected(7);
 		statement = this.getName() + " infected " + other.getName()+ "\n" +statement;
     }
     other.setSpecial(other.getSpecial()+4);
