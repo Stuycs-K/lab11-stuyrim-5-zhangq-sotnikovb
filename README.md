@@ -4,9 +4,9 @@
 ## Features
 
 ### Required
-:question: add debuff system to adventurer
+:white_check_mark: add debuff system to adventurer
 
-:question: 2 required adventurer subclasses
+:white_check_mark: 2 required adventurer subclasses
 
 :white_check_mark: stat display
 
@@ -18,7 +18,7 @@
 
 
 ### Optional
-:question: 1 extra adventurer subclass
+:white_check_mark: 1 extra adventurer subclass
 
 :x: multiple random rounds
 
@@ -30,7 +30,7 @@
 
 :x: allow player to choose classes and names
 
-:question: random names for enemies
+:white_check_mark: random names for enemies
 
 
 ## Adventurer Subclasses
