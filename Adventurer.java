@@ -52,7 +52,10 @@ public abstract class Adventurer{
   */
 
   public void applyDamage(int amount){
-    this.HP -= amount;
+    if (getHP()>amount)
+      this.HP -= amount;
+    else
+      this.HP = 0;
   }
 
   public void setInfected(int infected){

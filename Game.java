@@ -225,7 +225,7 @@ public class Game{
     String log = preprompt;
     TextBox(9, 2, 78, 15, Text.colorize(log, Text.WHITE, 0));
 
-    while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
+    while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit")) && (party.get(0).getHP()>0 || party.get(1).getHP()>0 || party.get(2).getHP()>0)){
       TextBox(9, 2, 78, 15, Text.colorize(log, Text.WHITE, 0));
       //Read user input
       input = userInput(in);
@@ -236,7 +236,10 @@ public class Game{
       //display event based on last turn's input
       if(partyTurn && party.get(whichPlayer).getTurn()>0){
 
+        if (party.get(whichPlayer).getHP()<= 0)
+          log = party.get(whichPlayer)+" is dead.\n"+log;
         //Process user input for the last Adventurer:
+        else{
         if(input.startsWith("attack ") || input.startsWith("a")){
           log = party.get(whichPlayer).attack(enemies.get(Integer.parseInt(input.substring(input.indexOf(' ')+1)))) + "\n" + log;
         }
@@ -253,6 +256,7 @@ public class Game{
             }
 			log = party.get(whichPlayer).support(party.get(Integer.parseInt(input.substring(input.indexOf(' ')+1)))) + "\n" + log;
         }
+      }
 
         //You should decide when you want to re-ask for user input
         //If no errors:
@@ -279,8 +283,13 @@ public class Game{
       }else{
 		  if (enemies.get(whichOpponent).getTurn()>0){
 		  }
-        String prompt = enemies.get(whichOpponent).takeTurn(enemies, party);
-        log = prompt+"\npress enter to see next turn\n"+log;
+        if (enemies.get(whichOpponent).getHP()<= 0)
+          log = enemies.get(whichOpponent)+" is dead.\n"+log;
+        else
+        {
+          String prompt = enemies.get(whichOpponent).takeTurn(enemies, party);
+          log = prompt+"\npress enter to see next turn\n"+log;
+        }
 
         whichOpponent++;
 
@@ -323,6 +332,8 @@ public class Game{
 
 
     }//end of main game loop
+    log = "Game over.\n"+log;
+    TextBox(9, 2, 78, 15, Text.colorize(log, Text.WHITE, 0));
 
 
     //After quit reset things:
