@@ -79,7 +79,7 @@ public class CodeWarrior extends Adventurer{
 	String statement = "Gives a coffee to "+other+" and restores "
     + other.restoreSpecial(5)+" "+other.getSpecialName();
 	if (this.getInfected()>0){
-		other.setInfected(8);
+		other.setInfected(7);
 		statement = this.getName() + " infected " + other.getName()+ "\n" +statement;
     }
     return statement;  
