@@ -222,7 +222,7 @@ public class Game{
     //Main loop
 
     //display this prompt at the start of the game.
-    String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit\n ";
+    String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit\nDefeat all enemies at once to advance to the next round. Keep in mind: enemies can be revived by their teammates after death.";
     String log = preprompt;
     TextBox(9, 2, 78, 15, Text.colorize(log, Text.WHITE, 0));
 
@@ -264,7 +264,7 @@ public class Game{
         else if(input.startsWith("support") || input.startsWith("su")){
           if (!input.contains(" "))
             log = party.get(whichPlayer).support() + "\n" + log;
-          else if (input.length()>input.indexOf(' ')+1 && Integer.parseInt(input.substring(input.indexOf(' ')+1)) <3 && enemies.get(Integer.parseInt(input.substring(input.indexOf(' ')+1))).getHP()>0)
+          else if (input.length()>input.indexOf(' ')+1 && Integer.parseInt(input.substring(input.indexOf(' ')+1)) <3 && party.get(Integer.parseInt(input.substring(input.indexOf(' ')+1))).getHP()>0)
 		       log = party.get(whichPlayer).support(party.get(Integer.parseInt(input.substring(input.indexOf(' ')+1)))) + "\n" + log;
           else
           {

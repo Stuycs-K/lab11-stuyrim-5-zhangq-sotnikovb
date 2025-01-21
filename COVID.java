@@ -72,14 +72,14 @@ public class COVID extends Adventurer{
   }
   /*restore 4Hp to an ally*/
   public String support(Adventurer other){
-	String statement = "transfer interstitial fluid to "+other+" and restored 4Hp";
+	String statement = this.getName() + " transfer interstitial fluid to "+other+" and restored 4Hp";
 	if (this.getInfected()>0){
 		other.setInfected(8);
-		statement = this.getName() + " infected " + other.getName()+ "\n" +statement;
-    }
-    other.setHP(other.getHP()+4);
-    return statement;
-    }
+		statement = this.getName() + " infected " + other.getName();
+  }
+  other.setHP(other.getHP()+4);
+  return statement;
+  }
 
   /*Restores 3 hp to self.*/
   public String support(){
