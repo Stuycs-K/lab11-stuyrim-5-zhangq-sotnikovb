@@ -133,7 +133,7 @@ public class Game{
           col = 29;
         else if (i == 2)
           col = 55;
-        TextBox(startRow, col, 25, 2, party.get(i)+"");
+        TextBox(startRow, col, 25, 2, i+". "+party.get(i));
         drawText("HP: "+colorByPercent(party.get(i).getHP(), party.get(i).getmaxHP()), startRow+2, col);
         drawText(party.get(i).getSpecialName()+": "+colorByPercent(party.get(i).getSpecial(), party.get(i).getSpecialMax()), startRow+3, col);
         drawText("Immune system level: "+party.get(i).getImmuneSystem()+"x", startRow+4, col);
