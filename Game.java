@@ -278,9 +278,16 @@ public class Game{
         //done with one party member
       }else{
 		  if (enemies.get(whichOpponent).getTurn()>0){
+			String prompt = enemies.get(whichOpponent).takeTurn(enemies, party);
+			log = prompt+"\n"+log;
 		  }
-        String prompt = enemies.get(whichOpponent).takeTurn(enemies, party);
-        log = prompt+"\npress enter to see next turn\n"+log;
+		  else{
+			  String skipTurn = enemies.get(whichOpponent).getName() + " skips this turn. ";
+			  log = skipTurn+"\n"+log;
+		  }
+		  if (whichOpponent!= 2){
+			  log = "press enter to see next enemy's move\n"+log;
+		  }
 
         whichOpponent++;
 
@@ -294,12 +301,12 @@ public class Game{
         turn++;
         for (Adventurer allies : party){
             allies.setImmuneSystem(1.0);
-			      allies.restoreSpecial(1);
-			      allies.setTurn(1);
-			      if (allies.getInfected()>1 && allies.getInfected()<6){
-				          HIV.spAttackEffect(allies);
-			      }
-			      allies.setInfected(allies.getInfected()-1);
+			allies.restoreSpecial(1);
+			allies.setTurn(1);
+			if (allies.getInfected()>1 && allies.getInfected()<6){
+		        HIV.spAttackEffect(allies);
+			}
+			allies.setInfected(allies.getInfected()-1);
         }
         for (Adventurer enemy : enemies){
             enemy.setImmuneSystem(1.0);
@@ -311,7 +318,7 @@ public class Game{
 			enemy.setInfected(enemy.getInfected()-1);
         }
         partyTurn=true;
-		String displayTurn = "This is turn " + turn + ".\n";
+		String displayTurn = "This is turn " + (turn+1) + ".\n";
 		log = displayTurn + log;
         //display this prompt before player's turn
         String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit";
