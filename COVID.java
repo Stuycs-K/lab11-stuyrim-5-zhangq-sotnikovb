@@ -59,7 +59,7 @@ public class COVID extends Adventurer{
     damage = (int)(damage * getImmuneSystem());
     other.applyDamage(damage);
     return this + " attacked "+ other + " and dealt "+ damage +
-    " points of damage. They then regained 2 chunks of viralLoad";
+    " points of damage.";
   }
 
   /*Choose an enemy, and deal 12 points of damage.
@@ -90,7 +90,7 @@ public class COVID extends Adventurer{
   public String support(){
     int hp = 3;
     setHP(getHP()+hp);
-    return this+" gained interstitial fliud and restores 3hp";
+    return this.getName()+" gained interstitial fliud and restores 3hp";
   }
 
   public String takeTurn(ArrayList<Adventurer> own, ArrayList<Adventurer> enemies)
@@ -103,6 +103,10 @@ public class COVID extends Adventurer{
       if (ally!=this && ally.getHP()<6 && ally.getHP()>0)
         return support(ally);
     }
-    return attack(enemies.get((int)(Math.random()*3)));
+	int enemiesIndex = (int)(Math.random()*3);
+	while(enemies.get(enemiesIndex).getHP() == 0){
+		enemiesIndex = (int)(Math.random()*3);
+	}
+    return attack(enemies.get(enemiesIndex));
   }
 }

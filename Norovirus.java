@@ -59,7 +59,7 @@ public class Norovirus extends Adventurer{
     damage = (int)(damage * getImmuneSystem());
     other.applyDamage(damage);
     return this + " attacked "+ other + " and dealt "+ damage +
-    " points of damage. They then regained 2 chunks of viralLoad";
+    " points of damage.";
   }
 
   /*Choose an enemy, and it skips a turn.
@@ -77,7 +77,7 @@ public class Norovirus extends Adventurer{
   }
   /*restore 4sp to an ally*/
   public String support(Adventurer other){
-	String statement = "transfer interstitial fluid to "+other+" and restored 4 chunks of viral load";
+	String statement = this.getName()+" transfer interstitial fluid to "+other+" and restored 4 chunks of viral load";
 	if (this.getInfected()>0){
 		other.setInfected(7);
 		statement = this.getName() + " infected " + other.getName()+ "\n" +statement;
@@ -90,21 +90,29 @@ public class Norovirus extends Adventurer{
   public String support(){
     setSpecial(getSpecial()+2);
     setHP(getHP()+3);
-    return this+" gained interstitial fliud and restores 3 chunks of viral load";
+    return this.getName()+" gained interstitial fliud and restores 3 chunks of viral load";
   }
 
   public String takeTurn(ArrayList<Adventurer> own, ArrayList<Adventurer> enemies)
     {
-      if (getHP()<6)
+      if (getHP()<6){
         return support();
-      else if (getSpecial()>9)
-        return specialAttack(enemies.get((int)(Math.random()*3)));
+	  }
       else
       {
-        if(Math.random()*2 == 0)
-          return support(own.get((int)(Math.random()*3)));
+		int ownIndex = (int)(Math.random()*3);
+		int enemiesIndex = (int)(Math.random()*3);
+		while(own.get(ownIndex).getHP() == 0){
+			ownIndex = (int)(Math.random()*3);
+		}
+		while(enemies.get(enemiesIndex).getHP() == 0){
+			enemiesIndex = (int)(Math.random()*3);
+		}
+        if((int)(Math.random()*2) == 0){
+			return support(own.get(ownIndex));
+		}
         else
-          return attack(enemies.get((int)(Math.random()*3)));
+          return attack(enemies.get(enemiesIndex));
       }
     }
 }

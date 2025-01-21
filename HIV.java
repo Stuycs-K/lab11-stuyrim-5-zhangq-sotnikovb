@@ -58,7 +58,7 @@ public class HIV extends Adventurer{
     damage = (int)(damage * getImmuneSystem());
     other.applyDamage(damage);
     return this + " attacked "+ other + " and dealt "+ damage +
-    " points of damage. They then regained 2 chunks of viralLoad.";
+    " points of damage.";
   }
 
   /*Choose an enemy, and after 3 turns deal 1 points of damage for 1 turn and get a damage debuff for 5 turns to it.
@@ -77,7 +77,7 @@ public class HIV extends Adventurer{
   }
   /*Increase ally damage by 20% of the original */
   public String support(Adventurer other){
-	String statement = "transfer interstitial fluid to "+other+" and increases ally damage by 1.2x";
+	String statement = this.getName()+" transfer interstitial fluid to "+other+" and increases ally damage by 1.2x";
 	if (this.getInfected()>0){
 		other.setInfected(7);
 		statement = this.getName() + " infected " + other.getName()+ "\n" +statement;
@@ -90,7 +90,7 @@ public class HIV extends Adventurer{
   public String support(){
     int hp = 4;
     setHP(getHP()+hp);
-    return this+" gained interstitial fliud and restores "+restoreSpecial(2)+" "
+    return this.getName()+" gained interstitial fliud and restores "+restoreSpecial(2)+" "
     + getSpecialName()+ " and "+hp+" HP";
   }
 
@@ -108,10 +108,19 @@ public class HIV extends Adventurer{
         return specialAttack(enemies.get((int)(Math.random()*3)));
       else
       {
-        if(Math.random()*2 == 0)
-          return support(own.get((int)(Math.random()*3)));
+		int ownIndex = (int)(Math.random()*3);
+		int enemiesIndex = (int)(Math.random()*3);
+		while(own.get(ownIndex).getHP() == 0){
+			ownIndex = (int)(Math.random()*3);
+		}
+		while(enemies.get(enemiesIndex).getHP() == 0){
+			enemiesIndex = (int)(Math.random()*3);
+		}
+        if((int)(Math.random()*2) == 0){
+			return support(own.get(ownIndex));
+		}
         else
-          return attack(enemies.get((int)(Math.random()*3)));
+          return attack(enemies.get(enemiesIndex));
       }
     }
 }

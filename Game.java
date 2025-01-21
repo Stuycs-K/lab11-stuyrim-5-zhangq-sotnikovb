@@ -111,16 +111,13 @@ public class Game{
       String name = NAMES.get(index);
       NAMES.remove(index);
       if (choice == 0){
-        return new CodeWarrior(name);
+        return new Norovirus(name);
       }
       else if (choice == 1){
         return new HIV(name);
       }
-      else if (choice == 2){
-        return new COVID(name);
-      }
       else{
-        return new Norovirus(name);
+        return new COVID(name);
       }
     }
 
@@ -241,43 +238,51 @@ public class Game{
           log = party.get(whichPlayer)+" is dead.\n"+log;
         //Process user input for the last Adventurer:
         else{
-        if(input.startsWith("attack ") || input.startsWith("a ")){
-          if (input.length()>input.indexOf(' ')+1 && Integer.parseInt(input.substring(input.indexOf(' ')+1)) <3 && enemies.get(Integer.parseInt(input.substring(input.indexOf(' ')+1))).getHP()>0)
-            log = party.get(whichPlayer).attack(enemies.get(Integer.parseInt(input.substring(input.indexOf(' ')+1)))) + "\n" + log;
-          else
-          {
-            log = "this is not a valid character index.\n" + log;
-            log = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit\n" + log;
-            continue;
-          }
+			try{
+			if(input.startsWith("attack ") || input.startsWith("a ")){
+			  if (input.length()>input.indexOf(' ')+1 && Integer.parseInt(input.substring(input.indexOf(' ')+1)) <3 && enemies.get(Integer.parseInt(input.substring(input.indexOf(' ')+1))).getHP()>0)
+				log = party.get(whichPlayer).attack(enemies.get(Integer.parseInt(input.substring(input.indexOf(' ')+1)))) + "\n" + log;
+			  else
+			  {
+				log = "this is not a valid character index.\n" + log;
+				log = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit\n" + log;
+				continue;
+			  }
+			}
+			else if(input.startsWith("special ") || input.startsWith("sp ")){
+			  if (input.length()>input.indexOf(' ')+1 && Integer.parseInt(input.substring(input.indexOf(' ')+1)) <3 && enemies.get(Integer.parseInt(input.substring(input.indexOf(' ')+1))).getHP()>0)
+				log = party.get(whichPlayer).specialAttack(enemies.get(Integer.parseInt(input.substring(input.indexOf(' ')+1)))) + "\n" + log;
+			  else
+			  {
+				log = "this is not a valid character index.\n" + log;
+				log = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit\n" + log;
+				continue;
+			  }
+			}
+			else if(input.startsWith("support") || input.startsWith("su")){
+			  if (!input.contains(" "))
+				log = party.get(whichPlayer).support() + "\n" + log;
+			  else if (input.length()>input.indexOf(' ')+1 && Integer.parseInt(input.substring(input.indexOf(' ')+1)) <3 && party.get(Integer.parseInt(input.substring(input.indexOf(' ')+1))).getHP()>0)
+				   log = party.get(whichPlayer).support(party.get(Integer.parseInt(input.substring(input.indexOf(' ')+1)))) + "\n" + log;
+			  else
+			  {
+			   log = "this is not a valid character index.\n" + log;
+			   log = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit\n" + log;
+			   continue;
+			  }
+			}
+		  else{
+			log = "this is not a valid move. you can input attack/special/support followed by a space then a number to use your move. Input quit to end.\n" + log;
+			log = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit\n" + log;
+			continue;
+		  }
+		}
+		catch (NumberFormatException e){
+			  log = "Invalid input! only enter a number after attack/special/support!" + "\n" + log;
+			  String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit";
+			  log = prompt+"\n"+log;
+			  continue;
         }
-        else if(input.startsWith("special ") || input.startsWith("sp ")){
-          if (input.length()>input.indexOf(' ')+1 && Integer.parseInt(input.substring(input.indexOf(' ')+1)) <3 && enemies.get(Integer.parseInt(input.substring(input.indexOf(' ')+1))).getHP()>0)
-            log = party.get(whichPlayer).specialAttack(enemies.get(Integer.parseInt(input.substring(input.indexOf(' ')+1)))) + "\n" + log;
-          else
-          {
-            log = "this is not a valid character index.\n" + log;
-            log = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit\n" + log;
-            continue;
-          }
-        }
-        else if(input.startsWith("support") || input.startsWith("su")){
-          if (!input.contains(" "))
-            log = party.get(whichPlayer).support() + "\n" + log;
-          else if (input.length()>input.indexOf(' ')+1 && Integer.parseInt(input.substring(input.indexOf(' ')+1)) <3 && party.get(Integer.parseInt(input.substring(input.indexOf(' ')+1))).getHP()>0)
-		       log = party.get(whichPlayer).support(party.get(Integer.parseInt(input.substring(input.indexOf(' ')+1)))) + "\n" + log;
-          else
-          {
-           log = "this is not a valid character index.\n" + log;
-           log = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit\n" + log;
-           continue;
-          }
-        }
-      else{
-        log = "this is not a valid move. you can input attack/special/support followed by a space then a number to use your move. Input quit to end.\n" + log;
-        log = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit\n" + log;
-        continue;
-      }
     }
         //You should decide when you want to re-ask for user input
         //If no errors:

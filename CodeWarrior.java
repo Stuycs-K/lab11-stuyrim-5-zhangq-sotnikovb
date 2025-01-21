@@ -108,7 +108,7 @@ public class CodeWarrior extends Adventurer{
         return specialAttack(enemies.get((int)(Math.random()*3)));
       else
       {
-        if(Math.random()*2 == 0)
+        if((int)(Math.random()*2) == 0)
           return support(own.get((int)(Math.random()*3)));
         else
           return attack(enemies.get((int)(Math.random()*3)));
