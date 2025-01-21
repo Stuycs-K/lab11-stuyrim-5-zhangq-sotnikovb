@@ -247,7 +247,11 @@ public class Game{
           if (!input.contains(" "))
             log = party.get(whichPlayer).support() + "\n" + log;
           else
-            log = party.get(whichPlayer).support(party.get(Integer.parseInt(input.substring(input.indexOf(' ')+1)))) + "\n" + log;
+			if (party.get(whichPlayer).getInfected()>0){
+				party.get(Integer.parseInt(input.substring(input.indexOf(' ')+1))).setInfected(8);
+				log = party.get(whichPlayer).getName() + " infected " + party.get(Integer.parseInt(input.substring(input.indexOf(' ')+1))).getName();   
+            }
+			log = party.get(whichPlayer).support(party.get(Integer.parseInt(input.substring(input.indexOf(' ')+1)))) + "\n" + log;
         }
 
         //You should decide when you want to re-ask for user input
