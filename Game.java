@@ -203,9 +203,9 @@ public class Game{
     //Adventurers you control:
     //Make an ArrayList of Adventurers and add 2-4 Adventurers to it.
     ArrayList<Adventurer> party = new ArrayList<>();
-    party.add(createRandomAdventurer());
-    party.add(createRandomAdventurer());
-    party.add(createRandomAdventurer());
+    party.add(new COVID());
+    party.add(new HIV());
+    party.add(new Norovirus());
 
     boolean partyTurn = true;
     int whichPlayer = 0;
@@ -221,7 +221,7 @@ public class Game{
     //Main loop
 
     //display this prompt at the start of the game.
-    String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
+    String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit";
     String log = preprompt;
     TextBox(9, 2, 78, 15, Text.colorize(log, Text.WHITE, 0));
 
@@ -233,8 +233,6 @@ public class Game{
         log = input+"\n"+log;
       TextBox(9, 2, 78, 15, Text.colorize(log, Text.WHITE, 0));
       //example debug statment
-
-
       //display event based on last turn's input
       if(partyTurn){
 
@@ -260,7 +258,7 @@ public class Game{
         if(whichPlayer < party.size()){
           //This is a player turn.
           //Decide where to draw the following prompt:
-          String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
+          String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit";
           log = prompt+"\n"+log;
 
 
@@ -299,9 +297,25 @@ public class Game{
         //It only triggers after the last enemy goes.
         whichPlayer = 0;
         turn++;
+        for (Adventurer allies : party){
+            allies.setImmuneSystem(1.0);
+			allies.restoreSpecial(1);
+			if (allies.getInfected()>1 && allies.getInfected()<6){
+				HIV.spAttackEffect(allies);
+			}
+			allies.setInfected(allies.getInfected()-1);
+        }
+        for (Adventurer enemy : enemies){
+            enemy.setImmuneSystem(1.0);
+			enemy.restoreSpecial(1);
+			if (enemy.getInfected()>1 && enemy.getInfected()<6){
+				HIV.spAttackEffect(enemy);
+			}
+			enemy.setInfected(enemy.getInfected()-1);
+        }		
         partyTurn=true;
         //display this prompt before player's turn
-        String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
+        String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit";
         log = prompt+"\n"+log;
       }
 
