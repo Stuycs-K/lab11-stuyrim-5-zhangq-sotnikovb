@@ -310,6 +310,9 @@ public class Game{
             enemies.add(createRandomAdventurer());
             enemies.add(createRandomAdventurer());
             enemies.add(createRandomAdventurer());
+            party.get(0).setHP(party.get(0).getmaxHP());
+            party.get(1).setHP(party.get(1).getmaxHP());
+            party.get(2).setHP(party.get(2).getmaxHP());
             whichPlayer = 0;
             turn = 0;
             round++;
