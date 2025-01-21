@@ -264,11 +264,7 @@ public class Game{
         else if(input.startsWith("support") || input.startsWith("su")){
           if (!input.contains(" "))
             log = party.get(whichPlayer).support() + "\n" + log;
-          else if (party.get(whichPlayer).getInfected()>0){
-				    party.get(Integer.parseInt(input.substring(input.indexOf(' ')+1))).setInfected(8);
-				    log = party.get(whichPlayer).getName() + " infected " + party.get(Integer.parseInt(input.substring(input.indexOf(' ')+1))).getName();
-          }
-          if (input.length()>input.indexOf(' ')+1 && Integer.parseInt(input.substring(input.indexOf(' ')+1)) <3 && enemies.get(Integer.parseInt(input.substring(input.indexOf(' ')+1))).getHP()>0)
+          else if (input.length()>input.indexOf(' ')+1 && Integer.parseInt(input.substring(input.indexOf(' ')+1)) <3 && enemies.get(Integer.parseInt(input.substring(input.indexOf(' ')+1))).getHP()>0)
 		       log = party.get(whichPlayer).support(party.get(Integer.parseInt(input.substring(input.indexOf(' ')+1)))) + "\n" + log;
           else
           {
@@ -332,24 +328,23 @@ public class Game{
         }
         //done with one party member
       }else{
-		  if (enemies.get(whichOpponent).getTurn()>0){
-			String prompt = enemies.get(whichOpponent).takeTurn(enemies, party);
-			log = prompt+"\n"+log;
+		  if (enemies.get(whichOpponent).getHP()<= 0){
+			  log = enemies.get(whichOpponent)+" is dead.\n"+log;
 		  }
 		  else{
-			  String skipTurn = enemies.get(whichOpponent).getName() + " skips this turn. ";
-			  log = skipTurn+"\n"+log;
+			if (enemies.get(whichOpponent).getTurn()>0){
+				String prompt = enemies.get(whichOpponent).takeTurn(enemies, party);
+				log = prompt+"\n"+log;
+			  }
+			else{
+				String skipTurn = enemies.get(whichOpponent).getName() + " skips this turn. ";
+				log = skipTurn+"\n"+log;
+			  }
 		  }
 		  if (whichOpponent!= 2){
 			  log = "press enter to see next enemy's move\n"+log;
 		  }
-        if (enemies.get(whichOpponent).getHP()<= 0)
-          log = enemies.get(whichOpponent)+" is dead.\n"+log;
-        else
-        {
-          String prompt = enemies.get(whichOpponent).takeTurn(enemies, party);
-          log = prompt+"\npress enter to see next turn\n"+log;
-        }
+
 
         whichOpponent++;
 

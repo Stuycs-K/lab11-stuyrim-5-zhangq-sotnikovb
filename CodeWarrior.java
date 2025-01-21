@@ -76,8 +76,13 @@ public class CodeWarrior extends Adventurer{
   }
   /*Restores 5 special to other*/
   public String support(Adventurer other){
-    return "Gives a coffee to "+other+" and restores "
+	String statement = "Gives a coffee to "+other+" and restores "
     + other.restoreSpecial(5)+" "+other.getSpecialName();
+	if (this.getInfected()>0){
+		other.setInfected(8);
+		statement = this.getName() + " infected " + other.getName()+ "\n" +statement;
+    }
+    return statement;  
   }
   /*Restores 6 special and 1 hp to self.*/
   public String support(){
