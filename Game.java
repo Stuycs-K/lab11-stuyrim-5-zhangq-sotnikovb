@@ -222,7 +222,7 @@ public class Game{
     //Main loop
 
     //display this prompt at the start of the game.
-    String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit";
+    String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit\n ";
     String log = preprompt;
     TextBox(9, 2, 78, 15, Text.colorize(log, Text.WHITE, 0));
 
