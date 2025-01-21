@@ -256,8 +256,12 @@ public class Game{
             }
 			log = party.get(whichPlayer).support(party.get(Integer.parseInt(input.substring(input.indexOf(' ')+1)))) + "\n" + log;
         }
+      else{
+        log = "this is not a valid move. you can input attack/special/support followed by a space then a number to use your move. Input quit to end.\n" + log;
+        log = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit\n" + log;
+        continue;
       }
-
+    }
         //You should decide when you want to re-ask for user input
         //If no errors:
         whichPlayer++;
@@ -282,6 +286,15 @@ public class Game{
         //done with one party member
       }else{
 		  if (enemies.get(whichOpponent).getTurn()>0){
+			String prompt = enemies.get(whichOpponent).takeTurn(enemies, party);
+			log = prompt+"\n"+log;
+		  }
+		  else{
+			  String skipTurn = enemies.get(whichOpponent).getName() + " skips this turn. ";
+			  log = skipTurn+"\n"+log;
+		  }
+		  if (whichOpponent!= 2){
+			  log = "press enter to see next enemy's move\n"+log;
 		  }
         if (enemies.get(whichOpponent).getHP()<= 0)
           log = enemies.get(whichOpponent)+" is dead.\n"+log;
@@ -303,12 +316,12 @@ public class Game{
         turn++;
         for (Adventurer allies : party){
             allies.setImmuneSystem(1.0);
-			      allies.restoreSpecial(1);
-			      allies.setTurn(1);
-			      if (allies.getInfected()>1 && allies.getInfected()<6){
-				          HIV.spAttackEffect(allies);
-			      }
-			      allies.setInfected(allies.getInfected()-1);
+			allies.restoreSpecial(1);
+			allies.setTurn(1);
+			if (allies.getInfected()>1 && allies.getInfected()<6){
+		        HIV.spAttackEffect(allies);
+			}
+			allies.setInfected(allies.getInfected()-1);
         }
         for (Adventurer enemy : enemies){
             enemy.setImmuneSystem(1.0);
@@ -320,7 +333,7 @@ public class Game{
 			enemy.setInfected(enemy.getInfected()-1);
         }
         partyTurn=true;
-		String displayTurn = "This is turn " + turn + ".\n";
+		String displayTurn = "This is turn " + (turn+1) + ".\n";
 		log = displayTurn + log;
         //display this prompt before player's turn
         String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit";
